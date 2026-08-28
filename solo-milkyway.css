@@ -1,12 +1,28 @@
 /* =========================================
-   Solo's TidaLuna overrides
+   Solo's Cotton Candy Nights overrides
    ========================================= */
 
-:root {
-    /* Home feed container border */
-    --feedbrdr: transparent !important;
+/* Убираем рамку и свечение вокруг всего Home feed */
+._feed_412931c {
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
 
-    /* Home page six large shortcut cards */
-    --v1: rgb(15, 15, 20) !important;
-    --v2: rgb(15, 15, 20) !important;
+/* Шесть больших shortcut-кнопок сверху:
+   обычное состояние — тёмное, без свечения */
+._shortcutItem_6c8e7b4 {
+    background: rgb(15, 15, 20) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    transition: background-color 150ms ease !important;
+}
+
+/* Только при наведении появляется выделение */
+._shortcutItem_6c8e7b4:hover {
+    background: rgb(35, 35, 42) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
 }
