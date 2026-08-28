@@ -5,7 +5,7 @@
  * } */
 
 /* =========================================================
-   SOLO V2 - CSS PATCH
+   SOLO V2 - CSS PATCH (FIXED & CLEANED)
    DEPENDENCY: base-windows.css
    ========================================================= */
 
@@ -61,7 +61,7 @@
     --tracksel1: rgb(202, 202, 202);
     --tracksel2: rgb(175, 175, 175);
     --trackselshad: rgb(var(--cover-DVib1), .09);
-    --trackseltxt: color-mix(in srgb, rgb(var(--cover-DVib1), 1) 10%, black 90%);
+    --trackseltxt: #ffffff;
     --tracksborder: rgb(102, 99, 112);
     --v1: rgb(68, 70, 78);
     --v2: rgb(95, 91, 108);
@@ -89,7 +89,47 @@
 }
 
 /* =========================================================
-   BACKGROUND SYSTEM & MAIN LAYOUT
+   1. GLOBAL SELECTION & TRACK SELECTION FIXES
+   ========================================================= */
+
+/* Фикс черного текста при системном выделении мышкой */
+::selection {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Фикс цвета исполнителя/альбома/трека при клике/выделении строки */
+._tableRow_299a426._tableRowSelected_fb04c2a,
+._rowContainer_ebb4cfc._selected_8f556cc,
+._tableRow_299a426:hover,
+._rowContainer_ebb4cfc:hover {
+    --trackseltxt: #ffffff !important;
+    --wave-color-text-main: #ffffff !important;
+    --wave-color-text-secondary: rgba(255, 255, 255, 0.7) !important;
+}
+
+._tableRow_299a426._tableRowSelected_fb04c2a *,
+._rowContainer_ebb4cfc._selected_8f556cc *,
+._tableRow_299a426._tableRowSelected_fb04c2a a,
+._rowContainer_ebb4cfc._selected_8f556cc a,
+._tableRow_299a426._tableRowSelected_fb04c2a [class*="_artistText_"],
+._rowContainer_ebb4cfc._selected_8f556cc [class*="_artistText_"],
+._tableRow_299a426._tableRowSelected_fb04c2a [class*="_title_"],
+._rowContainer_ebb4cfc._selected_8f556cc [class*="_title_"] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Вторичный текст (исполнители/альбомы) в выделенной строке */
+._tableRow_299a426._tableRowSelected_fb04c2a [class*="_artistText_"] a,
+._rowContainer_ebb4cfc._selected_8f556cc [class*="_artistText_"] a {
+    color: rgba(255, 255, 255, 0.75) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* =========================================================
+   2. BACKGROUND SYSTEM & MAIN LAYOUT
    ========================================================= */
 
 div._dataContainer_5bb6028::before,
@@ -133,1209 +173,209 @@ div._dataContainer_66f4f40::before {
 }
 
 /* =========================================================
-   HOME FEED & SHORTCUTS
+   3. COLLECTION FIXES (Оверлей и картинки)
    ========================================================= */
 
-._feed_412931c {
-    border: 0 !important;
-    border-color: transparent !important;
-    box-shadow: none !important;
-}
-
-._shortcutItem_6c8e7b4 {
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
-    background-image: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-._shortcutItem_6c8e7b4:hover {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    background-image: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-/* =========================================================
-   CARDS & CONTAINERS
-   ========================================================= */
-
-._card_38c6c04 {
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    height: 100% !important;
-    min-height: 100% !important;
-    overflow: hidden !important;
-}
-
-._card_38c6c04:hover {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    background-image: none !important;
-    border-color: transparent !important;
-    border-width: 0 !important;
-    box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
-}
-
-._card_38c6c04 [class*="_title_"] {
-    min-height: unset !important;
-    height: auto !important;
-    max-height: unset !important;
-    line-height: normal !important;
-}
-
-._card_38c6c04 ._titleText_9e9bb51._medium20_1lyag_192._marketText_1lyag_1 {
-    min-height: 40px !important;
-    height: 40px !important;
-    max-height: 40px !important;
-    line-height: 20px !important;
-    overflow: hidden !important;
-    display: -webkit-box !important;
-    -webkit-box-orient: vertical !important;
-    -webkit-line-clamp: 2 !important;
-}
-
-._card_38c6c04:hover ._overlay_91ba65b {
-    background: rgba(0, 0, 0, 0.18) !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-._card_38c6c04:hover ._imageWrapper_aecc0c5 img {
-    filter: brightness(0.78) !important;
-    transform: scale(1.02) !important;
-    transition: filter 180ms ease, transform 350ms ease !important;
-}
-
-._card_38c6c04:hover ._marketText_1lyag_1 {
-    color: var(--solo-text) !important;
-}
-
-._card_38c6c04:hover ._badge_57d1ccb {
-    filter: none !important;
-}
-
-/* HORIZONTAL CARDS */
-._item_235a32d {
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-._item_235a32d:hover {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
-    transition: background-color 120ms ease !important;
-}
-
-._item_235a32d:hover ._marketText_1lyag_1,
-._item_235a32d:hover ._link_6a45a19._item_39605ae {
-    color: var(--solo-text) !important;
-}
-
-._item_235a32d:hover ._icon_77f3f89 {
-    fill: var(--solo-text) !important;
-}
-
-/* =========================================================
-   SIDEBAR & NAVIGATION
-   ========================================================= */
-
-._navigationItem_4e9deae {
-    background: transparent !important;
-    background-image: none !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    border-radius: 8px !important;
-    color: rgba(255, 255, 255, 0.78) !important;
-}
-
-._navigationItem_4e9deae ._icon_77f3f89,
-._navigationItem_4e9deae ._icon_b8b52c1 {
-    fill: var(--solo-text-secondary) !important;
-    color: var(--solo-text-secondary) !important;
-}
-
-._navigationItem_4e9deae:hover {
-    background: var(--solo-hover-soft) !important;
-    background-image: none !important;
-    color: var(--solo-text) !important;
-    border-radius: 8px !important;
-    outline: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
-}
-
-._navigationItem_4e9deae:hover ._icon_77f3f89,
-._navigationItem_4e9deae:hover ._icon_b8b52c1 {
-    fill: var(--solo-text) !important;
-    color: var(--solo-text) !important;
-}
-
-._navigationItem_4e9deae._selected_29027d1 {
-    background: transparent !important;
-    background-image: none !important;
-    color: var(--solo-text) !important;
-    outline: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
-}
-
-._navigationItem_4e9deae._selected_29027d1:hover {
-    background: var(--solo-hover-soft) !important;
-}
-
-._contentItem_684cbbe,
-._contentItem_684cbbe._selected_ae83ba5 {
-    background: transparent !important;
-    color: rgba(255, 255, 255, 0.78) !important;
-}
-
-._contentItem_684cbbe:hover {
-    background: rgba(255, 255, 255, 0.07) !important;
-    border-radius: 8px !important;
-}
-
-._contentItem_684cbbe ._thumbnail_f82abfa,
-._contentItem_684cbbe:hover ._thumbnail_f82abfa,
-._contentItem_684cbbe._selected_ae83ba5 ._thumbnail_f82abfa {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-._thumbnail_f82abfa {
-    background: rgba(255, 255, 255, 0.07) !important;
-}
-
-#sidebar > div._container_4454af7 > div > div {
-    margin-bottom: 0 !important;
-}
-
-._fixedNavigation_00842ee {
-    position: relative !important;
-    z-index: auto !important;
-}
-
-._sectionHeader_ca54638,
-._sectionHeader_f4932eb {
-    position: static !important;
-    top: auto !important;
-    z-index: auto !important;
-    background: transparent !important;
-}
-
-/* =========================================================
-   MENUS & POPUPS
-   ========================================================= */
-
-._container_d3060bb._visible_4bed23e,
-._contextMenu_8606b2d,
-._subMenu_706d970,
-._submenu_1951fe4 {
-    background: var(--solo-raised) !important;
-    background-color: var(--solo-raised) !important;
-    background-image: none !important;
-    color: var(--solo-text) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    animation: none !important;
-    --wave-color-opacity-contrast-fill-thick: var(--solo-text) !important;
-    --wave-color-solid-contrast-fill: var(--solo-text) !important;
-}
-
-._contextMenu_8606b2d ._actionTextInner_a14f37c,
-._container_d3060bb._visible_4bed23e ._actionTextInner_a14f37c {
-    color: var(--solo-text) !important;
-}
-
-._contextMenu_8606b2d ._icon_77f3f89 > use,
-._container_d3060bb._visible_4bed23e ._icon_77f3f89 > use {
-    fill: var(--solo-text-secondary) !important;
-}
-
-._actionItem_e0c1e65 {
-    background: transparent !important;
-    background-image: none !important;
-    color: var(--solo-text) !important;
-    border-radius: 6px !important;
-    box-shadow: none !important;
-}
-
-._actionItem_e0c1e65:hover {
-    background: var(--solo-hover-soft) !important;
-    background-image: none !important;
-    color: white !important;
-    box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
-}
-
-._contextMenu_8606b2d ._logout_d89cefd._actionItem_e0c1e65,
-._container_d3060bb._visible_4bed23e ._logout_d89cefd._actionItem_e0c1e65 {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    transform: none !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    box-sizing: border-box !important;
-    border-radius: 6px !important;
-    box-shadow: none !important;
-    color: var(--solo-text) !important;
-}
-
-._logout_d89cefd._actionItem_e0c1e65 ._actionTextInner_a14f37c,
-._logout_d89cefd._actionItem_e0c1e65 span {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-    color: var(--solo-text) !important;
-}
-
-._logout_d89cefd._actionItem_e0c1e65:hover {
-    background: var(--solo-hover-soft) !important;
-    background-image: none !important;
-    color: white !important;
-    box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
-    transition: background-color 120ms ease !important;
-}
-
-/* =========================================================
-   LYRICS, FEED & EXPLORE
-   ========================================================= */
-
-#nowPlaying ._wrapper_512d5f4 {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border-radius: 0 !important;
-    padding-left: 0 !important;
-}
-
-[data-test-page-name="feed"] ._defaultStyles_a1b9da9._container_d43f21d {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    --wave-color-text-main: var(--solo-text) !important;
-    --market-core-text-10-color: var(--solo-text) !important;
-}
-
-._text_d2b2b39 {
-    color: var(--solo-text) !important;
-}
-
-[data-test-page-name="explore"] button:not(._viewAllButton_4b4f90c),
-._button_f3463fe {
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
-    background-image: none !important;
-    color: var(--solo-text) !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
-}
-
-[data-test-page-name="explore"] button:not(._viewAllButton_4b4f90c):hover,
-._button_f3463fe:hover {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    background-image: none !important;
-    color: white !important;
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-[data-test-page-name="explore"] button span,
-[data-test-page-name="explore"] ._text_d2b2b39 {
-    color: inherit !important;
-    -webkit-text-fill-color: currentColor !important;
-}
-
-[data-test-page-name="explore"] button svg,
-[data-test-page-name="explore"] button svg use,
-._button_f3463fe svg,
-._button_f3463fe svg use {
-    color: currentColor !important;
-    fill: currentColor !important;
-}
-
-._viewAllButton_4b4f90c > ._marketText_1lyag_1,
-._viewAllButton_4b4f90c > ._semibold20_1lyag_246._marketText_1lyag_1 {
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
-    background-image: none !important;
-    color: var(--solo-text) !important;
-    border: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
-}
-
-._viewAllButton_4b4f90c > ._marketText_1lyag_1:hover {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    color: white !important;
-}
-
-[data-test-page-name="explore"] ._buttonContainer_a07db07,
-[data-test-page-name="explore"] ._buttonContainer_a07db07 > *,
-[data-test-page-name="explore"] .css-8iwxr,
-[data-test-page-name="explore"] .css-8iwxr > *,
-[data-test-page-name="explore"] .css-1xlzpjd,
-[data-test-page-name="explore"] .css-8iwxr.tidal-ui__spacer > .css-1xlzpjd.tidal-ui__button,
-._buttonContainer_a07db07 button {
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
-    background-image: none !important;
-    color: var(--solo-text) !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    filter: none !important;
-    animation: none !important;
-}
-
-[data-test-page-name="explore"] ._buttonContainer_a07db07 button:hover,
-[data-test-page-name="explore"] .css-1xlzpjd:hover,
-._buttonContainer_a07db07 button:hover {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    color: white !important;
-}
-
-._buttonContainer_a07db07 svg,
-._buttonContainer_a07db07 svg use,
-.css-1xlzpjd svg,
-.css-1xlzpjd svg use,
-._scrollingIcon_6596d82._icon_77f3f89 > use,
-._icon_41aad12 {
-    color: currentColor !important;
-    fill: currentColor !important;
-}
-
-/* =========================================================
-   SETTINGS (TIDAL & LUNA)
-   ========================================================= */
-
-[data-test="settings-page"] {
-    --wave-color-text-main: var(--solo-text) !important;
-    --market-core-text-10-color: var(--solo-text) !important;
-    --wave-color-solid-contrast-fill: var(--solo-text) !important;
-}
-
-[data-test="settings-page"] ._container_b4f1e20._fillDark_a1e5896,
-[data-test="settings-page"] ._container_b4f1e20._noFill_8429ea8,
-[data-test="settings-page"] ._container_b4f1e20._fillDark_a1e5896 > div,
-[data-test="settings-page"] ._container_9a0abb9 {
-    background: #09090b !important;
-    background-color: #09090b !important;
-    background-image: none !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-[data-test="settings-page"] ._select_ef84104,
-[data-test="settings-page"] div._container_9a0abb9 > ._select_ef84104 {
-    background: #09090b !important;
-    background-color: #09090b !important;
-    background-image: none !important;
-    color: var(--solo-text) !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    border-radius: 6px !important;
-}
-
-[data-test="settings-page"] ._container_9a0abb9:has(> ._select_ef84104) {
-    background: #09090b !important;
-    background-color: #09090b !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    border-radius: 6px !important;
-}
-
-[data-test="settings-page"] ._select_ef84104:hover {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-}
-
-[data-test="settings-page"] ._unchecked_a1bcc16._label_12bd8cc {
-    background: #3f3f47 !important;
-}
-
-[data-test="settings-page"] ._checked_3422d33._label_12bd8cc {
-    background: #8d8d99 !important;
-}
-
-[data-test="settings-page"] ._label_12bd8cc:after {
-    background: #f3f3f5 !important;
-}
-
-/* LUNA THEMES */
-[class="MuiContainer-root MuiContainer-maxWidthLg css-sot3eg"],
-.css-1m2j012, .css-1v59atl, .css-1m2uggs, .css-1l78aht, .css-16a8gxx {
-    background: #09090b !important;
-    background-color: #09090b !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-.css-1m2j012:hover, .css-1v59atl:hover, .css-1m2uggs:hover, .css-1l78aht:hover {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-}
-
-.css-71pw0n.Mui-selected {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    color: white !important;
-    border-radius: 8px !important;
-}
-
-.css-18r1alp, .css-yc8597, .css-pfqxe1, .css-1id1h8n, .css-axw7ok, .css-16hze37 {
-    color: var(--solo-text) !important;
-}
-
-.css-1y0ghtc + .MuiSwitch-track {
-    background-color: #414149 !important;
+/* Жестко фиксируем видимость картинок в Collection */
+[data-test-page-name="my-collection"] img,
+[data-track--page-id^="mycollection_"] img,
+[data-test-page-name="my-collection"] ._cellContainer_19b23ad img,
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad img {
     opacity: 1 !important;
-}
-
-.css-1y0ghtc.Mui-checked + .MuiSwitch-track {
-    background-color: #8d8d99 !important;
-    opacity: 1 !important;
-}
-
-.css-1y0ghtc.Mui-checked .MuiSwitch-thumb {
-    background: #f3f3f5 !important;
-}
-
-[class*="MuiPaper"], .css-1m2j012, .css-1v59atl, .css-1m2uggs, .css-1l78aht {
-    min-width: 0 !important;
-    overflow: hidden !important;
-}
-
-[class*="MuiPaper"] *, .css-1m2j012 *, .css-1v59atl *, .css-1m2uggs *, .css-1l78aht * {
-    min-width: 0;
-}
-
-.css-1m2j012 a[href^="http"], .css-1v59atl a[href^="http"], .css-1m2uggs a[href^="http"], .css-1l78aht a[href^="http"],
-.css-1m2j012 p, .css-1v59atl p, .css-1m2uggs p, .css-1l78aht p,
-[class*="MuiPaper"] a[href^="http"], [class*="MuiPaper"] p {
-    max-width: 100% !important;
-    overflow: hidden !important;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
-    box-sizing: border-box !important;
-}
-
-[class*="MuiPaper"] button, [class*="MuiPaper"] input[type="checkbox"], [class*="MuiPaper"] .MuiSwitch-root,
-[class*="MuiStack"] > button, [class*="MuiStack"] > .MuiSwitch-root, [class*="MuiStack"] > [role="button"],
-.css-1m2j012 button, .css-1v59atl button, .css-1m2uggs button, .css-1l78aht button,
-.css-1m2j012 .MuiSwitch-root, .css-1v59atl .MuiSwitch-root, .css-1m2uggs .MuiSwitch-root, .css-1l78aht .MuiSwitch-root {
-    flex: 0 0 auto !important;
-    flex-shrink: 0 !important;
-    align-self: center !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    transform: none !important;
-}
-
-.css-3ts090 {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    color: var(--solo-text) !important;
-    border-color: var(--solo-border) !important;
-    box-shadow: none !important;
-}
-
-/* =========================================================
-   FOOTER PLAYER & CONTROLS
-   ========================================================= */
-
-._player_8c80ae6 ._trackContent_7b758a9,
-._player_8c80ae6 ._utilityButtons_4d7aaf9 {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-._player_8c80ae6 ._utilityButtons_4d7aaf9 button {
-    background: transparent !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-._player_8c80ae6 ._utilityButtons_4d7aaf9 button:hover {
-    background: transparent !important;
-    background-image: none !important;
-    box-shadow: none !important;
-    filter: brightness(1.2) !important;
-}
-
-/* QUALITY BADGES */
-._player_8c80ae6 ._gradientMax_9111fba,
-._player_8c80ae6 ._gradientHigh_87f2c3b,
-._player_8c80ae6 ._gradientLow_3f9bc0d,
-._player_8c80ae6 ._badge_7b2911e,
-._player_8c80ae6.nowPlayingVisible ._gradientMax_9111fba,
-._player_8c80ae6.nowPlayingVisible ._gradientHigh_87f2c3b,
-._player_8c80ae6.nowPlayingVisible ._gradientLow_3f9bc0d,
-._player_8c80ae6.nowPlayingVisible ._badge_7b2911e,
-._gradientMax_9111fba, ._gradientHigh_87f2c3b, ._gradientLow_3f9bc0d, ._badge_7b2911e {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
+    visibility: visible !important;
     filter: none !important;
-    animation: none !important;
 }
 
-._player_8c80ae6 ._badge_7b2911e:hover,
-._player_8c80ae6.nowPlayingVisible ._badge_7b2911e:hover,
-._gradientMax_9111fba:hover, ._gradientHigh_87f2c3b:hover, ._gradientLow_3f9bc0d:hover, ._badge_7b2911e:hover {
+/* Убираем темный оверлей, который глушил картинку */
+[data-test-page-name="my-collection"] ._overlay_91ba65b,
+[data-track--page-id^="mycollection_"] ._overlay_91ba65b,
+[data-test-page-name="my-collection"] [class*="_overlay_"],
+[data-track--page-id^="mycollection_"] [class*="_overlay_"] {
+    display: none !important;
+    opacity: 0 !important;
     background: transparent !important;
-    background-color: transparent !important;
-    box-shadow: none !important;
-    filter: brightness(1.15) !important;
-    animation: none !important;
 }
 
-.upnext-container, .upnext-container:hover, .upnext-cover {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-}
-
-/* =========================================================
-   PLAY QUEUE & TRACK TABLES
-   ========================================================= */
-
-._container_b3e8f28,
-._container_b3e8f28._nowPlayingVisible_6285d60 {
-    background: var(--solo-raised) !important;
-    background-color: var(--solo-raised) !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.22) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-._container_aab70e3:hover ._marketText_1lyag_1,
-._container_aab70e3:hover ._item_39605ae,
-._wrapper_940fda7:hover ._marketText_1lyag_1,
-._wrapper_940fda7:hover ._item_39605ae,
-._playQueueItemsContainer_01c88fe ._titleLink_712223c:hover {
-    color: var(--solo-text) !important;
-    text-decoration: none !important;
-    text-shadow: none !important;
-}
-
-._container_aab70e3:hover, ._wrapper_940fda7:hover {
-    background: var(--solo-hover-soft) !important;
-    background-image: none !important;
-    box-shadow: none !important;
-}
-
-._playQueueWrapper_cbf5aaa .css-u7yq00,
-._playQueueWrapper_cbf5aaa .css-1ug9uri,
-._playQueueWrapper_cbf5aaa ._nowPlayingIconContainer_615aacb {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    background-image: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
-}
-
-._tableRow_299a426._tableRowSelected_fb04c2a,
-._rowContainer_ebb4cfc._selected_8f556cc {
-    --vv: var(--solo-text) !important;
-    --trackseltxt: var(--solo-text) !important;
-    --wave-color-text-main: var(--solo-text) !important;
-    --wave-color-text-secondary: var(--solo-text-secondary) !important;
-}
-
-._tableRow_299a426._tableRowSelected_fb04c2a ._artistText_a1c7611,
-._tableRow_299a426._tableRowSelected_fb04c2a ._artistText_a1c7611 a,
-._rowContainer_ebb4cfc._selected_8f556cc ._artistText_a1c7611,
-._rowContainer_ebb4cfc._selected_8f556cc ._artistText_a1c7611 a {
-    color: var(--solo-text-secondary) !important;
-    -webkit-text-fill-color: var(--solo-text-secondary) !important;
-}
-
-/* =========================================================
-   SEARCH SYSTEM
-   ========================================================= */
-
-._container_cb5cbe4,
-._searchFieldWithPopover_267e090,
-._container_5116191._searchFieldWithPopover_267e090 {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border-color: transparent !important;
-    box-shadow: none !important;
-}
-
-._searchFieldWithPopover_267e090 > ._searchField_b2eb7f7,
-._container_cb5cbe4 .searchFieldWithinSearchFieldWithPopover,
-._container_f1be359.searchFieldWithinSearchFieldWithPopover._searchField_b2eb7f7,
-div._searchField_b2eb7f7 {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    background-image: none !important;
-    border: 1px solid rgba(255, 255, 255, .035) !important;
-    border-radius: 999px !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    color: var(--solo-text) !important;
-}
-
-div._searchField_b2eb7f7:focus-within {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    border-color: rgba(255, 255, 255, .08) !important;
-    box-shadow: none !important;
-}
-
-div._searchField_b2eb7f7 input,
-div._searchField_b2eb7f7 input:hover,
-div._searchField_b2eb7f7 input:focus,
-div._searchField_b2eb7f7 input::placeholder {
-    color: var(--solo-text) !important;
-    -webkit-text-fill-color: var(--solo-text) !important;
-}
-
-div._searchField_b2eb7f7 > svg,
-div._searchField_b2eb7f7 > button svg {
-    color: var(--solo-text-secondary) !important;
-    fill: currentColor !important;
-}
-
-._container_f1be359,
-[class="_container_79ca9c5"],
-._container_79ca9c5 {
-    background: var(--solo-raised) !important;
-    background-color: var(--solo-raised) !important;
-    background-image: none !important;
-    color: var(--solo-text) !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, .45) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    --wave-color-text-main: var(--solo-text) !important;
-    --wave-color-solid-contrast-fill: var(--solo-text) !important;
-}
-
-._container_f1be359 span, ._container_f1be359 p, ._container_f1be359 a, ._container_f1be359 ._marketText_1lyag_1,
-[class="_container_79ca9c5"] span, [class="_container_79ca9c5"] p, [class="_container_79ca9c5"] a, [class="_container_79ca9c5"] ._marketText_1lyag_1 {
-    color: var(--solo-text) !important;
-    -webkit-text-fill-color: currentColor !important;
-}
-
-._container_f1be359 [class*="_artistTextContainer_"], ._container_f1be359 [class*="_detailContainer_"],
-[class="_container_79ca9c5"] ._suggestionText_bf2e71c,
-[class="_container_79ca9c5"] [class*="_artistTextContainer_"], [class="_container_79ca9c5"] [class*="_detailContainer_"],
-._container_5116191._active_5dd5be1 ._subContainer_e34d9db ._artistTextContainer_2879aaf,
-._container_5116191._active_5dd5be1 ._subContainer_51de625 ._artistTextContainer_7041a33,
-._container_5116191._active_5dd5be1 ._viewAllResultsContainer_515a3d8 ._viewAllResultsText_e3ba23a {
-    color: var(--solo-text-secondary) !important;
-}
-
-[class="_container_79ca9c5"] ._icon_77f3f89,
-[class="_container_79ca9c5"] ._icon_77f3f89 use {
-    color: var(--solo-text-secondary) !important;
-    fill: currentColor !important;
-}
-
-[class="_container_79ca9c5"] button._container_eca1840:hover,
-[class="_container_79ca9c5"] button._container_eca1840:focus {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-}
-
-span._highlight_a043e62 {
-    color: white !important;
-    -webkit-text-fill-color: white !important;
-    background: rgba(255, 255, 255, .10) !important;
-    border-radius: 3px !important;
-}
-
-/* =========================================================
-   COLLECTION & MIXES
-   ========================================================= */
-
+/* Поведение при ховере в Collection */
 [data-test-page-name="my-collection"] ._cellContainer_19b23ad,
 [data-track--page-id="mycollection_playlists"] ._cellContainer_19b23ad,
 [data-track--page-id^="mycollection_"] ._cellContainer_19b23ad,
 [data-test-page-name="mixes"] ._card_38c6c04,
 [data-track--page-id*="mix"] ._card_38c6c04 {
     background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
-    background-image: none !important;
     border: none !important;
-    outline: none !important;
     box-shadow: none !important;
     border-radius: 8px !important;
-    filter: none !important;
 }
 
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad {
-    height: 100% !important;
-    min-height: 100% !important;
-    box-sizing: border-box !important;
-}
-
-[data-test-page-name="my-collection"] ._cellContainer_19b23ad:hover,
-[data-track--page-id="mycollection_playlists"] ._cellContainer_19b23ad:hover,
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover {
-    background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
-    background-image: none !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-[data-track--page-id="mycollection_playlists"] ._cellContainer_19b23ad ._container_7e465e2,
-._container_7e465e2 {
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-[data-track--page-id="mycollection_playlists"] ._cellContainer_19b23ad:hover ._container_7e465e2 {
-    background: var(--solo-bg) !important;
-}
-
-div._cellCoverContainer_b517623 > a > div > svg,
-div._cellCoverContainer_b517623 > a > div > svg > use,
-[data-track--page-id="mycollection_playlists"] ._cellContainer_19b23ad svg,
-[data-track--page-id="mycollection_playlists"] ._cellContainer_19b23ad svg use {
-    color: var(--solo-text-secondary) !important;
-    fill: currentColor !important;
-}
-
-[data-test-page-name="my-collection"] .css-ohr3gy,
-[data-test-page-name="my-collection"] .css-17bbmu3,
-[data-track--page-id="mycollection_playlists"] .css-ohr3gy,
-[data-track--page-id="mycollection_playlists"] .css-17bbmu3 {
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
-    background-image: none !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-[data-test-page-name="mixes"] [class*="_items_"],
-[data-track--page-id*="mix"] [class*="_items_"],
-[data-track--page-id^="mycollection_"] [class*="_grid_"],
-[data-test-page-name="mixes"] [class*="_grid_"],
-[data-test-page-name="my-collection"] [class*="_container_"]:has(> [class*="_grid_"]),
-[data-track--page-id^="mycollection_"] [class*="_container_"]:has(> [class*="_grid_"]),
-[data-test-page-name="mixes"] [class*="_container_"]:has(> [class*="_grid_"]),
-[data-track--page-id^="mycollection_"] [class*="_cellList_"],
-[data-track--page-id^="mycollection_"] [class*="_itemsContainer_"],
-[data-test-page-name="mixes"] [class*="_cellList_"],
-[data-test-page-name="mixes"] [class*="_itemsContainer_"],
-._items_8615603, ._grid_97562f5, ._moduleContainer_c7ad3d9,
-.is-intersecting._occlusion_de6b9d3 ._defaultStyles_a1b9da9.ALBUM_ITEMS.tidal-ui__occlusion,
-.is-intersecting._occlusion_de6b9d3 ._defaultStyles_a1b9da9.TRACK_LIST.tidal-ui__occlusion,
-._defaultStyles_a1b9da9._ALBUM_LIST_2327501, ._defaultStyles_a1b9da9._ARTIST_LIST_d81d4dc,
-[data-track--page-id^="mycollection_"] .ReactVirtualized__Grid,
-[data-test-page-name="mixes"] .ReactVirtualized__Grid {
-    border: none !important;
-    border-color: transparent !important;
-    border-width: 0 !important;
-    border-style: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad [class*="_title_"] {
-    min-height: unset !important;
-    height: auto !important;
-    max-height: unset !important;
-    line-height: normal !important;
-}
-
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad ._cellImage_0ef8dd3,
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad img {
-    opacity: 1 !important;
-    visibility: visible !important;
-    filter: none !important;
-    transition: filter 180ms ease, transform 350ms ease !important;
-}
-
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover ._cellImage_0ef8dd3,
+[data-test-page-name="my-collection"] ._cellContainer_19b23ad:hover img,
 [data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover img {
-    opacity: 1 !important;
-    visibility: visible !important;
-    filter: brightness(.78) !important;
+    opacity: 0.85 !important;
+    filter: brightness(0.9) !important;
 }
-
-[data-test-page-name="mixes"] ._imageWrapper_aecc0c5 img,
-[data-track--page-id*="mix"] ._imageWrapper_aecc0c5 img {
-    filter: none !important;
-    opacity: 1 !important;
-}
-
-[data-test-page-name="mixes"] ._card_38c6c04:hover ._imageWrapper_aecc0c5 img,
-[data-track--page-id*="mix"] ._card_38c6c04:hover ._imageWrapper_aecc0c5 img {
-    filter: brightness(.78) !important;
-}
-
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover [class*="_overlay_"] {
-    background: rgba(0, 0, 0, .12) !important;
-    background-image: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    filter: none !important;
-}
-
-[data-test-page-name="mixes"] ._card_38c6c04 ._marketText_1lyag_1:not(._titleText_9e9bb51),
-[data-track--page-id*="mix"] ._card_38c6c04 ._marketText_1lyag_1:not(._titleText_9e9bb51) {
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-}
-
 
 /* =========================================================
-   SOLO V2.1 — TARGETED FIX PASS
-   2026-08-28
+   4. EXPLORE PAGE FIXES (Стрелки и цвета)
    ========================================================= */
 
-/* 1. SELECTED TRACKS / ALBUMS / ARTISTS
-   Base recolours different columns through --vv depending on page.
-   Force every textual track-cell role to stay readable, then restore
-   secondary hierarchy for artist/album metadata. */
-._tableRow_299a426._tableRowSelected_fb04c2a,
-._rowContainer_ebb4cfc._selected_8f556cc {
-    --vv: var(--solo-text) !important;
-    --trackseltxt: var(--solo-text) !important;
-    --market-core-text-10-color: var(--solo-text) !important;
+[data-test-page-name="explore"] {
     --wave-color-text-main: var(--solo-text) !important;
-    --wave-color-text-secondary: var(--solo-text-secondary) !important;
 }
 
-._tableRow_299a426._tableRowSelected_fb04c2a :is(
-    ._titleText_51cccae,
-    ._textMax_002bfe5,
-    ._textHigh_bbc1075,
-    [data-wave-color="textDefault"],
-    [data-wave-color="textSecondary"],
-    [class*="_artistText"],
-    [class*="_albumText"],
-    [class*="_titleText"],
-    [class*="_artistColumn"],
-    [class*="_albumColumn"],
-    a,
-    time
-),
-._rowContainer_ebb4cfc._selected_8f556cc :is(
-    ._titleText_51cccae,
-    ._textMax_002bfe5,
-    ._textHigh_bbc1075,
-    [data-wave-color="textDefault"],
-    [data-wave-color="textSecondary"],
-    [class*="_artistText"],
-    [class*="_albumText"],
-    [class*="_titleText"],
-    [class*="_artistColumn"],
-    [class*="_albumColumn"],
-    a,
-    time
-) {
+/* Стиль для всех кнопок и стрелок на странице Explore */
+[data-test-page-name="explore"] button,
+[data-test-page-name="explore"] ._button_f3463fe,
+[data-test-page-name="explore"] [class*="_scrollButton_"],
+[data-test-page-name="explore"] [class*="_arrowButton_"],
+[data-test-page-name="explore"] [class*="_navigationButton_"] {
+    background: var(--solo-raised) !important;
+    background-color: var(--solo-raised) !important;
     color: var(--solo-text) !important;
-    -webkit-text-fill-color: currentColor !important;
-}
-
-._tableRow_299a426._tableRowSelected_fb04c2a :is(
-    [class*="_artistText"],
-    [class*="_albumText"],
-    [class*="_artistColumn"],
-    [class*="_albumColumn"]
-),
-._rowContainer_ebb4cfc._selected_8f556cc :is(
-    [class*="_artistText"],
-    [class*="_albumText"],
-    [class*="_artistColumn"],
-    [class*="_albumColumn"]
-) {
-    color: var(--solo-text-secondary) !important;
-}
-
-
-/* 2. EXPLORE / HORIZONTAL SCROLL ARROWS
-   Kill Base's bright circular controls completely. */
-._buttonContainer_a07db07 > button,
-.css-1xlzpjd.tidal-ui__button,
-.css-8iwxr.tidal-ui__spacer > .css-1xlzpjd.tidal-ui__button {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border: 0 !important;
-    outline: 0 !important;
+    border: 1px solid var(--solo-border) !important;
+    border-radius: 50% !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    color: var(--solo-text-secondary) !important;
 }
 
-._buttonContainer_a07db07 > button:hover,
-.css-1xlzpjd.tidal-ui__button:hover,
-.css-8iwxr.tidal-ui__spacer > .css-1xlzpjd.tidal-ui__button:hover {
-    background: var(--solo-hover-soft) !important;
-    background-color: var(--solo-hover-soft) !important;
-    box-shadow: none !important;
-    animation: none !important;
+[data-test-page-name="explore"] button:hover,
+[data-test-page-name="explore"] ._button_f3463fe:hover,
+[data-test-page-name="explore"] [class*="_scrollButton_"]:hover {
+    background: var(--solo-hover) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-test-page-name="explore"] button svg,
+[data-test-page-name="explore"] button svg use,
+[data-test-page-name="explore"] [class*="_scrollButton_"] svg {
+    fill: var(--solo-text) !important;
     color: var(--solo-text) !important;
 }
 
-._buttonContainer_a07db07 svg,
-._buttonContainer_a07db07 svg use,
-.css-1xlzpjd svg,
-.css-1xlzpjd svg use,
-._scrollingIcon_6596d82._icon_77f3f89,
-._scrollingIcon_6596d82._icon_77f3f89 use,
-._icon_41aad12 {
-    color: currentColor !important;
-    fill: currentColor !important;
-}
+/* =========================================================
+   5. LUNA & SETTINGS UI FIXES (Переключатели и Иконки)
+   ========================================================= */
 
-/* Explore text/buttons must not inherit Base's near-black --vv. */
-[data-test-page-name="explore"],
-[data-test-page-name="explore"] button {
-    --vv: var(--solo-text) !important;
-    --market-core-text-10-color: var(--solo-text) !important;
-}
-
-[data-test-page-name="explore"] ._text_d2b2b39,
-[data-test-page-name="explore"] ._header_d2e600f ._title_d3f5c62 {
-    color: var(--solo-text) !important;
-}
-
-
-/* 3. COLLECTION ARTWORK
-   There was a literal selector typo in the current file:
-   "_cellImage_0ef8dd3" was missing its leading dot.
-   Target the selected cell state as well as hover. */
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad ._cellImage_0ef8dd3,
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad picture,
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad img,
-[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e ._cellImage_0ef8dd3,
-[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e picture,
-[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e img {
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover ._cellImage_0ef8dd3,
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover picture,
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover img,
-[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e:hover ._cellImage_0ef8dd3,
-[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e:hover img {
-    opacity: 1 !important;
-    visibility: visible !important;
-    filter: brightness(.78) !important;
-}
-
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover [class*="_overlay_"],
-[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e [class*="_overlay_"] {
-    background: rgba(0, 0, 0, .12) !important;
-    background-image: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    filter: none !important;
-}
-
-
-/* 4. TIDAL SETTINGS SWITCHES
-   Clearer ON/OFF contrast without introducing a bright accent colour. */
-[data-test="settings-page"] ._unchecked_a1bcc16._label_12bd8cc {
-    background: #303036 !important;
-    color: var(--solo-text-secondary) !important;
-}
-
+/* Красивые свитчи в настройках Tidal и Luna */
+.MuiSwitch-switchBase.Mui-checked,
 [data-test="settings-page"] ._checked_3422d33._label_12bd8cc {
-    background: #777782 !important;
-    color: white !important;
+    color: #a78bfa !important; /* Приятный фиолетовый акцент */
 }
 
-[data-test="settings-page"] ._label_12bd8cc:after {
-    background: #f4f4f6 !important;
-}
-
-
-/* 5. LUNA SWITCHES
-   LunaSwitch hardcodes a black checked knob in inline styles.
-   Override both the track and the custom Box used as the knob. */
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiSwitch-track {
-    background: #303036 !important;
-    opacity: 1 !important;
-}
-
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
 .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
-    background: #777782 !important;
+    background-color: #7c3aed !important;
+    opacity: 0.6 !important;
+}
+
+.MuiSwitch-track,
+[data-test="settings-page"] ._unchecked_a1bcc16._label_12bd8cc {
+    background-color: #27272a !important;
     opacity: 1 !important;
 }
 
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiSwitch-switchBase > .MuiBox-root {
-    background: #a7a7b0 !important;
+.MuiSwitch-thumb {
+    background-color: #f4f4f5 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) !important;
 }
 
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiSwitch-switchBase.Mui-checked > .MuiBox-root {
-    background: #f4f4f6 !important;
-}
-
-
-/* 6. LUNA ACTION ICONS
-   TidaLuna intentionally assigns warning/error/success colours to
-   reload, live-reload and uninstall controls. Neutralise that rainbow
-   and make every action control occupy the same visual box. */
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiIconButton-root {
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important;
-    flex: 0 0 34px !important;
-    margin: 0 !important;
-    padding: 5px !important;
+/* Фикс верстки списков в плагинах/темах Luna (Иконки и сдвиги) */
+.css-1m2j012, .css-1v59atl, .css-1m2uggs, .css-1l78aht, .css-16a8gxx,
+[class*="MuiPaper-root"] {
+    background: var(--solo-raised) !important;
+    border: 1px solid var(--solo-border) !important;
     border-radius: 8px !important;
-    background: transparent !important;
-    color: var(--solo-text-secondary) !important;
-    box-shadow: none !important;
-}
-
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiIconButton-root:hover {
-    background: var(--solo-hover-soft) !important;
-    color: var(--solo-text) !important;
-}
-
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiIconButton-root.Mui-disabled {
-    color: rgba(255,255,255,.20) !important;
-    opacity: 1 !important;
-}
-
-/* Keep destructive action semantic only on hover. */
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiIconButton-root[title^="Uninstall"]:hover {
-    color: #ff6b6b !important;
-}
-
-
-/* 7. LUNA PLUGIN/THEME HEADER LAYOUT
-   Source structure is a row Stack:
-   title -> controls -> flex spacer -> author.
-   The actual fix is min-width:0 on the title flex item, not a guessed
-   fixed-width reservation. Long theme URLs now ellipsize instead of
-   pushing the controls sideways. */
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiStack-root:has(> .MuiTypography-h6):has(> .MuiSwitch-root) {
     display: flex !important;
-    flex-direction: row !important;
     align-items: center !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    padding: 12px 16px !important;
+    position: relative !important;
+}
+
+/* Фикс верстки для Themes (с длинным URL) */
+.css-1m2j012 > div, .css-1v59atl > div,
+[class*="MuiPaper-root"] > div {
     min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+}
+
+/* Обрезка длинных строк/URL, чтобы они не выталкивали иконки */
+.css-1m2j012 p, .css-1v59atl p, .css-1m2j012 a, .css-1v59atl a,
+[class*="MuiPaper-root"] p, [class*="MuiPaper-root"] span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 100% !important;
+    display: block !important;
+}
+
+/* Зажимаем иконки действий справа, чтобы они не улетали */
+.css-1m2j012 > [class*="MuiStack"], 
+.css-1v59atl > [class*="MuiStack"],
+[class*="MuiPaper-root"] > [class*="MuiStack"],
+.css-1m2j012 .MuiSwitch-root,
+.css-1v59atl .MuiSwitch-root {
+    flex-shrink: 0 !important;
+    margin-left: 12px !important;
+    display: flex !important;
+    align-items: center !important;
     gap: 8px !important;
 }
 
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiStack-root:has(> .MuiTypography-h6):has(> .MuiSwitch-root)
-> .MuiTypography-h6 {
-    flex: 0 1 auto !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-    white-space: nowrap !important;
-    text-overflow: ellipsis !important;
+/* =========================================================
+   6. CARDS, SIDEBAR & SEARCH
+   ========================================================= */
+
+._card_38c6c04 {
+    background: var(--solo-bg) !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiStack-root:has(> .MuiTypography-h6):has(> .MuiSwitch-root)
-> .MuiTypography-h6 > a {
-    display: inline-block !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-    white-space: nowrap !important;
-    text-overflow: ellipsis !important;
-    vertical-align: bottom !important;
+._card_38c6c04:hover {
+    background: var(--solo-hover) !important;
 }
 
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiStack-root:has(> .MuiTypography-h6):has(> .MuiSwitch-root)
-> :is(.MuiSwitch-root, .MuiIconButton-root) {
-    flex-shrink: 0 !important;
-    align-self: center !important;
+._navigationItem_4e9deae {
+    background: transparent !important;
+    border-radius: 8px !important;
+    color: rgba(255, 255, 255, 0.78) !important;
 }
 
-/* Undo old broad Luna rules that let URL paragraphs consume action space. */
-[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
-.MuiStack-root:has(> .MuiTypography-h6):has(> .MuiSwitch-root)
-.MuiTypography-h6 p {
-    max-width: 100% !important;
+._navigationItem_4e9deae:hover {
+    background: var(--solo-hover-soft) !important;
+    color: #ffffff !important;
+}
+
+div._searchField_b2eb7f7 {
+    background: var(--solo-hover) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 999px !important;
+    color: var(--solo-text) !important;
+}
+
+._container_f1be359,
+._container_79ca9c5 {
+    background: var(--solo-raised) !important;
+    color: var(--solo-text) !important;
+    border: none !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .45) !important;
+}
+
+/* =========================================================
+   7. FOOTER PLAYER
+   ========================================================= */
+
+._player_8c80ae6 ._trackContent_7b758a9,
+._player_8c80ae6 ._utilityButtons_4d7aaf9 {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+._gradientMax_9111fba, ._gradientHigh_87f2c3b, ._gradientLow_3f9bc0d, ._badge_7b2911e {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
