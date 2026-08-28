@@ -1018,7 +1018,7 @@ div._cellCoverContainer_b517623 > a > div > svg > use,
     line-height: normal !important;
 }
 
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad _cellImage_0ef8dd3,
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad ._cellImage_0ef8dd3,
 [data-track--page-id^="mycollection_"] ._cellContainer_19b23ad img {
     opacity: 1 !important;
     visibility: visible !important;
@@ -1026,7 +1026,7 @@ div._cellCoverContainer_b517623 > a > div > svg > use,
     transition: filter 180ms ease, transform 350ms ease !important;
 }
 
-[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover _cellImage_0ef8dd3,
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover ._cellImage_0ef8dd3,
 [data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover img {
     opacity: 1 !important;
     visibility: visible !important;
@@ -1056,4 +1056,286 @@ div._cellCoverContainer_b517623 > a > div > svg > use,
 [data-track--page-id*="mix"] ._card_38c6c04 ._marketText_1lyag_1:not(._titleText_9e9bb51) {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+}
+
+
+/* =========================================================
+   SOLO V2.1 — TARGETED FIX PASS
+   2026-08-28
+   ========================================================= */
+
+/* 1. SELECTED TRACKS / ALBUMS / ARTISTS
+   Base recolours different columns through --vv depending on page.
+   Force every textual track-cell role to stay readable, then restore
+   secondary hierarchy for artist/album metadata. */
+._tableRow_299a426._tableRowSelected_fb04c2a,
+._rowContainer_ebb4cfc._selected_8f556cc {
+    --vv: var(--solo-text) !important;
+    --trackseltxt: var(--solo-text) !important;
+    --market-core-text-10-color: var(--solo-text) !important;
+    --wave-color-text-main: var(--solo-text) !important;
+    --wave-color-text-secondary: var(--solo-text-secondary) !important;
+}
+
+._tableRow_299a426._tableRowSelected_fb04c2a :is(
+    ._titleText_51cccae,
+    ._textMax_002bfe5,
+    ._textHigh_bbc1075,
+    [data-wave-color="textDefault"],
+    [data-wave-color="textSecondary"],
+    [class*="_artistText"],
+    [class*="_albumText"],
+    [class*="_titleText"],
+    [class*="_artistColumn"],
+    [class*="_albumColumn"],
+    a,
+    time
+),
+._rowContainer_ebb4cfc._selected_8f556cc :is(
+    ._titleText_51cccae,
+    ._textMax_002bfe5,
+    ._textHigh_bbc1075,
+    [data-wave-color="textDefault"],
+    [data-wave-color="textSecondary"],
+    [class*="_artistText"],
+    [class*="_albumText"],
+    [class*="_titleText"],
+    [class*="_artistColumn"],
+    [class*="_albumColumn"],
+    a,
+    time
+) {
+    color: var(--solo-text) !important;
+    -webkit-text-fill-color: currentColor !important;
+}
+
+._tableRow_299a426._tableRowSelected_fb04c2a :is(
+    [class*="_artistText"],
+    [class*="_albumText"],
+    [class*="_artistColumn"],
+    [class*="_albumColumn"]
+),
+._rowContainer_ebb4cfc._selected_8f556cc :is(
+    [class*="_artistText"],
+    [class*="_albumText"],
+    [class*="_artistColumn"],
+    [class*="_albumColumn"]
+) {
+    color: var(--solo-text-secondary) !important;
+}
+
+
+/* 2. EXPLORE / HORIZONTAL SCROLL ARROWS
+   Kill Base's bright circular controls completely. */
+._buttonContainer_a07db07 > button,
+.css-1xlzpjd.tidal-ui__button,
+.css-8iwxr.tidal-ui__spacer > .css-1xlzpjd.tidal-ui__button {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    color: var(--solo-text-secondary) !important;
+}
+
+._buttonContainer_a07db07 > button:hover,
+.css-1xlzpjd.tidal-ui__button:hover,
+.css-8iwxr.tidal-ui__spacer > .css-1xlzpjd.tidal-ui__button:hover {
+    background: var(--solo-hover-soft) !important;
+    background-color: var(--solo-hover-soft) !important;
+    box-shadow: none !important;
+    animation: none !important;
+    color: var(--solo-text) !important;
+}
+
+._buttonContainer_a07db07 svg,
+._buttonContainer_a07db07 svg use,
+.css-1xlzpjd svg,
+.css-1xlzpjd svg use,
+._scrollingIcon_6596d82._icon_77f3f89,
+._scrollingIcon_6596d82._icon_77f3f89 use,
+._icon_41aad12 {
+    color: currentColor !important;
+    fill: currentColor !important;
+}
+
+/* Explore text/buttons must not inherit Base's near-black --vv. */
+[data-test-page-name="explore"],
+[data-test-page-name="explore"] button {
+    --vv: var(--solo-text) !important;
+    --market-core-text-10-color: var(--solo-text) !important;
+}
+
+[data-test-page-name="explore"] ._text_d2b2b39,
+[data-test-page-name="explore"] ._header_d2e600f ._title_d3f5c62 {
+    color: var(--solo-text) !important;
+}
+
+
+/* 3. COLLECTION ARTWORK
+   There was a literal selector typo in the current file:
+   "_cellImage_0ef8dd3" was missing its leading dot.
+   Target the selected cell state as well as hover. */
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad ._cellImage_0ef8dd3,
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad picture,
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad img,
+[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e ._cellImage_0ef8dd3,
+[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e picture,
+[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e img {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover ._cellImage_0ef8dd3,
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover picture,
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover img,
+[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e:hover ._cellImage_0ef8dd3,
+[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e:hover img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: brightness(.78) !important;
+}
+
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover [class*="_overlay_"],
+[data-track--page-id^="mycollection_"] ._isCellSelectedDefault_cb7847e [class*="_overlay_"] {
+    background: rgba(0, 0, 0, .12) !important;
+    background-image: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+}
+
+
+/* 4. TIDAL SETTINGS SWITCHES
+   Clearer ON/OFF contrast without introducing a bright accent colour. */
+[data-test="settings-page"] ._unchecked_a1bcc16._label_12bd8cc {
+    background: #303036 !important;
+    color: var(--solo-text-secondary) !important;
+}
+
+[data-test="settings-page"] ._checked_3422d33._label_12bd8cc {
+    background: #777782 !important;
+    color: white !important;
+}
+
+[data-test="settings-page"] ._label_12bd8cc:after {
+    background: #f4f4f6 !important;
+}
+
+
+/* 5. LUNA SWITCHES
+   LunaSwitch hardcodes a black checked knob in inline styles.
+   Override both the track and the custom Box used as the knob. */
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiSwitch-track {
+    background: #303036 !important;
+    opacity: 1 !important;
+}
+
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+    background: #777782 !important;
+    opacity: 1 !important;
+}
+
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiSwitch-switchBase > .MuiBox-root {
+    background: #a7a7b0 !important;
+}
+
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiSwitch-switchBase.Mui-checked > .MuiBox-root {
+    background: #f4f4f6 !important;
+}
+
+
+/* 6. LUNA ACTION ICONS
+   TidaLuna intentionally assigns warning/error/success colours to
+   reload, live-reload and uninstall controls. Neutralise that rainbow
+   and make every action control occupy the same visual box. */
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiIconButton-root {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    flex: 0 0 34px !important;
+    margin: 0 !important;
+    padding: 5px !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    color: var(--solo-text-secondary) !important;
+    box-shadow: none !important;
+}
+
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiIconButton-root:hover {
+    background: var(--solo-hover-soft) !important;
+    color: var(--solo-text) !important;
+}
+
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiIconButton-root.Mui-disabled {
+    color: rgba(255,255,255,.20) !important;
+    opacity: 1 !important;
+}
+
+/* Keep destructive action semantic only on hover. */
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiIconButton-root[title^="Uninstall"]:hover {
+    color: #ff6b6b !important;
+}
+
+
+/* 7. LUNA PLUGIN/THEME HEADER LAYOUT
+   Source structure is a row Stack:
+   title -> controls -> flex spacer -> author.
+   The actual fix is min-width:0 on the title flex item, not a guessed
+   fixed-width reservation. Long theme URLs now ellipsize instead of
+   pushing the controls sideways. */
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiStack-root:has(> .MuiTypography-h6):has(> .MuiSwitch-root) {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    min-width: 0 !important;
+    gap: 8px !important;
+}
+
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiStack-root:has(> .MuiTypography-h6):has(> .MuiSwitch-root)
+> .MuiTypography-h6 {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+}
+
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiStack-root:has(> .MuiTypography-h6):has(> .MuiSwitch-root)
+> .MuiTypography-h6 > a {
+    display: inline-block !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    vertical-align: bottom !important;
+}
+
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiStack-root:has(> .MuiTypography-h6):has(> .MuiSwitch-root)
+> :is(.MuiSwitch-root, .MuiIconButton-root) {
+    flex-shrink: 0 !important;
+    align-self: center !important;
+}
+
+/* Undo old broad Luna rules that let URL paragraphs consume action space. */
+[class*="MuiContainer-root"][class*="MuiContainer-maxWidthLg"]
+.MuiStack-root:has(> .MuiTypography-h6):has(> .MuiSwitch-root)
+.MuiTypography-h6 p {
+    max-width: 100% !important;
 }
