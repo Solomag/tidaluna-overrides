@@ -1,43 +1,567 @@
 /* { * *
- "name": "Solo Milkyway v2",
+ "name": "Solo v2",
  "author": "Solo",
- "description": "Clean patch layer for Cotton Candy Nights base-windows"
+ "description": "Solo dark theme patch for Cotton Candy Nights base-windows"
  * } */
 
 
 /* =========================================================
-   SOLO MILKYWAY V2
-   Dependency:
-     1. base-windows.css
-     2. milkyway.css
-     3. THIS FILE
+   SOLO V2
 
-   IMPORTANT:
-   This is intentionally a PATCH.
-   It does not replace base-windows layout rules.
+   ONLY DEPENDENCY:
+     base-windows.css
+
+   This file includes the complete Milky Way colorway
+   configuration required by base-windows.css.
+
+   DO NOT enable milkyway.css separately.
    ========================================================= */
 
 
 /* =========================================================
-   0. DESIGN TOKENS
+   0. BASE COLOR SYSTEM
+   Merged from:
+   astronaut icecream / milkyway.css
+
+   These variables are REQUIRED because base-windows.css
+   references them throughout the UI.
    ========================================================= */
 
 :root {
-    --solo-bg: #09090b;
-    --solo-surface: #09090b;
 
-    --solo-raised: #1c1c1f;
+    /* -----------------------------------------------------
+       PRIMARY BASE COLOURS
+       ----------------------------------------------------- */
 
-    --solo-hover: #1e1e22;
-    --solo-hover-soft: rgba(255, 255, 255, 0.08);
-    --solo-hover-strong: rgba(255, 255, 255, 0.12);
+    --bhdf: rgb(245, 169, 255);
 
-    --solo-text: rgba(255, 255, 255, 0.92);
-    --solo-text-secondary: rgba(255, 255, 255, 0.68);
+    --cover-Vib1: 200, 200, 200;
+    --cover-DVib1: 5, 5, 5;
+    --cover-LVib1: 255, 255, 255;
 
-    --solo-border: rgba(255, 255, 255, 0.08);
+    --lyrtxt: 200, 200, 200;
+
+
+    --cover-Vib2: 255, 255, 255;
+    --cover-DVib2: 5, 5, 5;
+    --cover-LVib2: 255, 255, 255;
+
+
+    /* -----------------------------------------------------
+       CARDS
+       ----------------------------------------------------- */
+
+    --card: 5, 5, 5;
+
+    --card2: 15, 15, 20;
+
+    --cardacc: 230, 230, 230;
+
+    --cardacc2: 255, 255, 255;
+
+
+    /* -----------------------------------------------------
+       MUTED COLOURS
+       ----------------------------------------------------- */
+
+    --cover-Mut1: 120, 120, 120;
+
+    --cover-DMut1: 22, 22, 32;
+
+    --cover-LMut1: 239, 188, 236;
+
+
+    /* -----------------------------------------------------
+       FOOTER
+       ----------------------------------------------------- */
+
+    --cover-F00T: 5, 5, 12;
+
+    --cover-F00TBAR1: 240, 240, 240;
+
+    --cover-F00TBAR1BG: 230, 230, 230, .3;
+
+    --cover-F00TD: 74, 66, 58;
+
+
+    /* Now Playing footer */
+    --F00TNP: 23, 5, 64;
+
+    --F00TBARNP: 230, 230, 230;
+
+    --F00TBARNPBG: 230, 230, 230, .25;
+
+
+    /* -----------------------------------------------------
+       NOW PLAYING
+       ----------------------------------------------------- */
+
+    --NPBG: rgba(11, 11, 22, 0.407);
+
+    --bhdff: rgb(172, 209, 255);
+
+
+    /* -----------------------------------------------------
+       CARD ANIMATION
+       ----------------------------------------------------- */
+
+    --carddelay: -240ms;
+
+
+    /* -----------------------------------------------------
+       SIDEBAR
+       ----------------------------------------------------- */
+
+    --cover-S1D3B4R:
+        color-mix(
+            in srgb,
+            rgba(0, 0, 0, 0.513) 3%,
+            rgb(var(--cover-F00T), 1) 97%
+        );
+
+
+    /* -----------------------------------------------------
+       SIDEBAR IMAGE FILTER
+       ----------------------------------------------------- */
+
+    --sephue: 180deg;
+
+
+    /* -----------------------------------------------------
+       PLAYLIST / INNER CONTAINERS
+       ----------------------------------------------------- */
+
+    --plylstsat: 1.2;
+
+    --plylstbrt: .9;
+
+    --plylstbrdr:
+        rgba(255, 255, 255, 0.279);
+
+
+    /* -----------------------------------------------------
+       HOME FEED
+       ----------------------------------------------------- */
+
+    --feedsat: 1.2;
+
+    --feedbrt: .9;
+
+    --feedbrdr:
+        rgba(255, 255, 255, 0.262);
+
+
+    /* -----------------------------------------------------
+       SELECTED TRACK
+       ----------------------------------------------------- */
+
+    --tracksel1:
+        rgb(202, 202, 202);
+
+    --tracksel2:
+        rgb(175, 175, 175);
+
+    --trackselshad:
+        rgb(var(--cover-DVib1), .09);
+
+    --trackseltxt:
+        color-mix(
+            in srgb,
+            rgb(var(--cover-DVib1), 1) 10%,
+            black 90%
+        );
+
+    --tracksborder:
+        rgb(102, 99, 112);
+
+
+    /* -----------------------------------------------------
+       HOME SHORTCUT GRADIENT SOURCES
+
+       Base expects these even though Solo later replaces
+       the actual shortcut gradients.
+       ----------------------------------------------------- */
+
+    --v1:
+        rgb(68, 70, 78);
+
+    --v2:
+        rgb(95, 91, 108);
+
+
+    /* -----------------------------------------------------
+       MAIN BUTTONS
+       ----------------------------------------------------- */
+
+    --but1:
+        rgb(148, 148, 148);
+
+    --but2:
+        rgb(113, 113, 113);
+
+
+    /* -----------------------------------------------------
+       BACKGROUND SYSTEM
+       ----------------------------------------------------- */
+
+    --bg1: 0, 0, 0;
+
+    --bg2: 0, 0, 0;
+
+    --bg3: 0, 0, 0;
+
+    --tt:
+        rgb(9, 1, 35);
+
+    --gr:
+        hsl(0, 0%, 100%);
 }
 
+
+/* =========================================================
+   0.1 SOLO DESIGN TOKENS
+
+   Our own layer.
+   Unlike the variables above, these belong to Solo and
+   are not implementation dependencies of base-windows.
+   ========================================================= */
+
+:root {
+
+    --solo-bg:
+        #09090b;
+
+    --solo-surface:
+        #09090b;
+
+    --solo-raised:
+        #1c1c1f;
+
+    --solo-hover:
+        #1e1e22;
+
+    --solo-hover-soft:
+        rgba(255, 255, 255, 0.08);
+
+    --solo-hover-strong:
+        rgba(255, 255, 255, 0.12);
+
+    --solo-text:
+        rgba(255, 255, 255, 0.92);
+
+    --solo-text-secondary:
+        rgba(255, 255, 255, 0.68);
+
+    --solo-border:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   0.2 MILKY WAY BACKGROUND SYSTEM
+
+   This is NOT just decoration.
+
+   base-windows expects the colorway to supply the main
+   background because several of its containers are made
+   transparent.
+
+   Without this block the app falls through to incorrect
+   colours / cover-derived colours.
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   REMOVE PLAYLIST VIEW BACKGROUND IMAGE
+   --------------------------------------------------------- */
+
+div._dataContainer_5bb6028::before,
+div._dataContainer_7feb4a2::before,
+div._dataContainer_66f4f40::before {
+
+    background-image: none;
+}
+
+
+/* ---------------------------------------------------------
+   NOW PLAYING BACKGROUND
+   --------------------------------------------------------- */
+
+._background_42cea4e,
+.now-playing-background-container {
+
+    animation:
+        blink 10s infinite,
+        blink2 12s infinite,
+        blink1 17s infinite,
+        blink12 15s infinite;
+
+    background-image:
+
+        radial-gradient(
+            ellipse at top left,
+            rgb(var(--bg3), 0.2),
+            rgb(var(--bg2), 0.45),
+            rgba(0, 128, 0, 0) 80%
+        ),
+
+        radial-gradient(
+            circle at 10% 20%,
+            hsla(0, 0%, 100%, var(--star1)) 1px,
+            transparent 0
+        ),
+
+        radial-gradient(
+            circle at 35% 45%,
+            hsla(0, 0%, 100%, var(--star2)) .9px,
+            transparent 0
+        ),
+
+        radial-gradient(
+            circle at 35% 45%,
+            hsla(0, 0%, 100%, var(--star1)) .9px,
+            transparent 0
+        ),
+
+        radial-gradient(
+            circle at 70% 10%,
+            hsla(0, 0%, 100%, var(--star3)) 1.1px,
+            transparent 0
+        ),
+
+        radial-gradient(
+            circle at 85% 80%,
+            hsla(0, 0%, 100%, var(--star4)) 1.1px,
+            transparent 0
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+
+        radial-gradient(
+            ellipse at top left,
+            color-mix(
+                in srgb,
+                rgb(var(--bg3), 0.25) 95%,
+                rgb(var(--bg1), 0.25) 5%
+            ),
+            rgba(12, 12, 12, 0) 70%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgb(var(--bg3), .2),
+            transparent 53%
+        ),
+
+        radial-gradient(
+            circle at bottom left,
+            rgb(var(--bg3), .2),
+            transparent 53%
+        ),
+
+        radial-gradient(
+            ellipse at top left,
+            rgb(var(--bg2), .7),
+            rgb(var(--bg2), 0.4),
+            rgba(0, 128, 0, 0) 90%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(var(--bg3), 1),
+            rgba(var(--bg3), 1)
+        )
+
+        !important;
+
+
+    background-size:
+
+        100% 100%,
+        450px 240px,
+        350px 350px,
+        380px 600px,
+        560px 400px,
+        410px 320px,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%
+
+        !important;
+}
+
+
+/* ---------------------------------------------------------
+   MAIN APP BACKGROUND
+
+   THIS is the particularly important missing part visible
+   in your second screenshot.
+   --------------------------------------------------------- */
+
+._mainContainer_6519c30 {
+
+    animation:
+        blink 10s infinite,
+        blink2 12s infinite,
+        blink1 17s infinite,
+        blink12 15s infinite;
+
+
+    background-image:
+
+        radial-gradient(
+            ellipse at top left,
+            rgb(var(--bg3), 0.2),
+            rgb(var(--bg2), 0.45),
+            rgba(0, 128, 0, 0) 80%
+        ),
+
+        radial-gradient(
+            circle at 10% 20%,
+            hsla(0, 0%, 100%, var(--star1)) 1px,
+            transparent 0
+        ),
+
+        radial-gradient(
+            circle at 35% 45%,
+            hsla(0, 0%, 100%, var(--star2)) .9px,
+            transparent 0
+        ),
+
+        radial-gradient(
+            circle at 35% 45%,
+            hsla(0, 0%, 100%, var(--star1)) .9px,
+            transparent 0
+        ),
+
+        radial-gradient(
+            circle at 70% 10%,
+            hsla(0, 0%, 100%, var(--star3)) 1.1px,
+            transparent 0
+        ),
+
+        radial-gradient(
+            circle at 85% 80%,
+            hsla(0, 0%, 100%, var(--star4)) 1.1px,
+            transparent 0
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+
+        radial-gradient(
+            ellipse at top left,
+            color-mix(
+                in srgb,
+                rgb(var(--bg3), 0.25) 95%,
+                rgb(var(--bg1), 0.25) 5%
+            ),
+            rgba(12, 12, 12, 0) 70%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgb(var(--bg3), .2),
+            transparent 53%
+        ),
+
+        radial-gradient(
+            circle at bottom left,
+            rgb(var(--bg3), .2),
+            transparent 53%
+        ),
+
+        radial-gradient(
+            ellipse at top left,
+            rgb(var(--bg2), .7),
+            rgb(var(--bg2), 0.4),
+            rgba(0, 128, 0, 0) 90%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(var(--bg3), 1),
+            rgba(var(--bg3), 1)
+        )
+
+        !important;
+
+
+    background-size:
+
+        100% 100%,
+        450px 240px,
+        350px 350px,
+        380px 600px,
+        560px 400px,
+        410px 320px,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%
+
+        !important;
+}
+
+
+/* ---------------------------------------------------------
+   FULLSCREEN FALLBACK
+   --------------------------------------------------------- */
+
+._fullscreen_236d61b {
+    background-color:
+        rgb(var(--cover-Vib1));
+}
+
+
+/* ---------------------------------------------------------
+   MAIN CONTENT MUST REMAIN TRANSPARENT
+
+   The actual background lives on _mainContainer_6519c30.
+   --------------------------------------------------------- */
+
+._main_a5d9f44 {
+
+    background-color:
+        transparent !important;
+
+    background:
+        none !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR ARTWORK FILTER
+
+   Also supplied by Milky Way, not base-windows.
+   --------------------------------------------------------- */
+
+#sidebar ._thumbnail_f82abfa img {
+
+    filter:
+        sepia(1)
+        hue-rotate(var(--sephue))
+        saturate(0)
+        brightness(.8)
+        contrast(1.2);
+
+    transition:
+        0ms;
+}
 
 /* =========================================================
    1. HOME FEED
