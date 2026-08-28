@@ -1,15 +1,13 @@
-body {
-    filter: invert(1) !important;
-}
-
 /* Solo's Milky Way overrides */
 
+/* Убираем рамку вокруг верхнего блока */
 ._feed_412931c {
     border: 0 !important;
     border-color: transparent !important;
     box-shadow: none !important;
 }
 
+/* Верхние shortcut-кнопки — тёмные в покое */
 ._shortcutItem_6c8e7b4 {
     background: rgb(15, 15, 20) !important;
     background-image: none !important;
@@ -17,6 +15,7 @@ body {
     filter: none !important;
 }
 
+/* Подсветка только при наведении */
 ._shortcutItem_6c8e7b4:hover {
     background: rgb(45, 45, 52) !important;
     background-image: none !important;
