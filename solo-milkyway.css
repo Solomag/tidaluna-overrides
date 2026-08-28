@@ -1956,5 +1956,599 @@ span._highlight_a043e62 {
 }
 
 /* =========================================================
+   SOLO DARK — CLEANUP PASS 2
+   ========================================================= */
+
+
+/* =========================================================
+   1. COLLECTION / MIXES OUTER FRAME
+   Remove the giant frame, without touching layout.
+   ========================================================= */
+
+[data-track--page-id="mycollection_playlists"] [class*="_grid_"],
+[data-track--page-id="mycollection_albums"] [class*="_grid_"],
+[data-track--page-id="mycollection_tracks"] [class*="_grid_"],
+[data-track--page-id="mycollection_videos"] [class*="_grid_"],
+[data-track--page-id="mycollection_artists"] [class*="_grid_"],
+[data-test-page-name="mixes"] [class*="_grid_"] {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+/*
+   Base collection wrapper.
+   Don't change dimensions/padding — only decoration.
+*/
+[data-test-page-name="my-collection"] [class*="_container_"]:has(> [class*="_grid_"]),
+[data-track--page-id^="mycollection_"] [class*="_container_"]:has(> [class*="_grid_"]),
+[data-test-page-name="mixes"] [class*="_container_"]:has(> [class*="_grid_"]) {
+    border-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+/* Fallback for the visible collection frame */
+[data-track--page-id^="mycollection_"] [class*="_cellList_"],
+[data-track--page-id^="mycollection_"] [class*="_itemsContainer_"],
+[data-test-page-name="mixes"] [class*="_cellList_"],
+[data-test-page-name="mixes"] [class*="_itemsContainer_"] {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   2. COLLECTION CARD HEIGHT
+   Playlists / Albums / Videos / Profiles etc.
+
+   Same principle as the album-card fix:
+   every cell fills its grid track.
+   ========================================================= */
+
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad {
+    height: 100% !important;
+    min-height: 100% !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Reserve two lines for title area */
+[data-track--page-id^="mycollection_"]
+._cellContainer_19b23ad
+[class*="_title_"] {
+    min-height: 40px !important;
+    max-height: 40px !important;
+
+    line-height: 20px !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   3. COLLECTION CARD VISUAL LANGUAGE
+   ========================================================= */
+
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    filter: none !important;
+}
+
+
+/* Hover: only card surface changes */
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+    background-image: none !important;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    filter: none !important;
+}
+
+
+/* =========================================================
+   4. COLLECTION ARTWORK
+   IMPORTANT: artwork must NOT disappear on hover.
+   ========================================================= */
+
+[data-track--page-id^="mycollection_"]
+._cellContainer_19b23ad img {
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    filter: none !important;
+
+    transition:
+        filter 180ms ease,
+        transform 350ms ease !important;
+}
+
+
+/* Actual image gets dimmed, not hidden */
+[data-track--page-id^="mycollection_"]
+._cellContainer_19b23ad:hover img {
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    filter: brightness(.78) !important;
+}
+
+
+/*
+   Kill Cotton Candy's coloured/light artwork overlay.
+*/
+[data-track--page-id^="mycollection_"]
+._cellContainer_19b23ad:hover
+[class*="_overlay_"] {
+    background: rgba(0, 0, 0, .12) !important;
+    background-image: none !important;
+
+    opacity: 1 !important;
+
+    filter: none !important;
+}
+
+
+/* =========================================================
+   5. FOLDER ART
+   Keep native folder icon, but make it look like sidebar.
+   ========================================================= */
+
+[data-track--page-id="mycollection_playlists"]
+._cellContainer_19b23ad
+._container_7e465e2 {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+[data-track--page-id="mycollection_playlists"]
+._cellContainer_19b23ad:hover
+._container_7e465e2 {
+    background: var(--solo-bg) !important;
+}
+
+
+/* Folder icon */
+[data-track--page-id="mycollection_playlists"]
+._cellContainer_19b23ad
+svg,
+[data-track--page-id="mycollection_playlists"]
+._cellContainer_19b23ad
+svg use {
+    color: var(--solo-text-secondary) !important;
+    fill: currentColor !important;
+}
+
+
+/* =========================================================
+   6. SEARCH FIELD
+   Bring the background back.
+
+   #09090b was too close to page background and visually
+   disappeared. Search is a control, so use raised surface.
+   ========================================================= */
+
+._container_cb5cbe4
+._searchFieldWithPopover_267e090
+.searchFieldWithinSearchFieldWithPopover,
+
+._container_f1be359.searchFieldWithinSearchFieldWithPopover._searchField_b2eb7f7,
+
+div._searchField_b2eb7f7 {
+
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+    background-image: none !important;
+
+    border: 1px solid rgba(255,255,255,.035) !important;
+
+    box-shadow: none !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+
+div._searchField_b2eb7f7:focus-within {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+
+    border-color: rgba(255,255,255,.08) !important;
+
+    box-shadow: none !important;
+}
+
+
+/* Search text */
+div._searchField_b2eb7f7 input,
+div._searchField_b2eb7f7 input:hover,
+div._searchField_b2eb7f7 input:focus,
+div._searchField_b2eb7f7 input::placeholder {
+    color: var(--solo-text) !important;
+    -webkit-text-fill-color: var(--solo-text) !important;
+}
+
+
+/* =========================================================
+   7. SEARCH RESULTS / RECENT SEARCHES
+   This is the ACTUAL light rectangle from the screenshot.
+   ========================================================= */
+
+[class="_container_79ca9c5"] {
+    background: var(--solo-raised) !important;
+    background-color: var(--solo-raised) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    outline: none !important;
+
+    box-shadow:
+        0 12px 32px rgba(0,0,0,.45) !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    --wave-color-text-main:
+        var(--solo-text) !important;
+
+    --wave-color-solid-contrast-fill:
+        var(--solo-text) !important;
+}
+
+
+/* Result text */
+[class="_container_79ca9c5"] span,
+[class="_container_79ca9c5"] p,
+[class="_container_79ca9c5"] a {
+    color: var(--solo-text) !important;
+}
+
+
+/* Secondary result text */
+[class="_container_79ca9c5"] ._suggestionText_bf2e71c,
+[class="_container_79ca9c5"] [class*="_artistTextContainer_"],
+[class="_container_79ca9c5"] [class*="_detailContainer_"] {
+    color: var(--solo-text-secondary) !important;
+}
+
+
+/* Result icons */
+[class="_container_79ca9c5"] ._icon_77f3f89,
+[class="_container_79ca9c5"] ._icon_77f3f89 use {
+    color: var(--solo-text-secondary) !important;
+    fill: currentColor !important;
+}
+
+
+/* Result hover */
+[class="_container_79ca9c5"]
+button._container_eca1840:hover,
+
+[class="_container_79ca9c5"]
+button._container_eca1840:focus {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+}
+
+
+/* =========================================================
+   8. SEARCH GHOST RECTANGLE
+
+   Base has multiple overlapping search backgrounds.
+   The field itself should draw the pill; its wrappers
+   should be transparent.
+   ========================================================= */
+
+._container_cb5cbe4,
+._searchFieldWithPopover_267e090,
+._container_5116191._searchFieldWithPopover_267e090 {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    box-shadow: none !important;
+
+    border-color: transparent !important;
+}
+
+
+/*
+   But restore the INNER actual field after clearing wrappers.
+*/
+._searchFieldWithPopover_267e090 > ._searchField_b2eb7f7,
+._container_cb5cbe4 .searchFieldWithinSearchFieldWithPopover {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+
+    border-radius: 999px !important;
+}
+
+
+/* =========================================================
+   9. TIDAL SETTINGS
+   Replace #2f2f31-ish surfaces with #09090b.
+   ========================================================= */
+
+[data-test="settings-page"]
+._container_b4f1e20._fillDark_a1e5896,
+
+[data-test="settings-page"]
+._container_b4f1e20._noFill_8429ea8,
+
+[data-test="settings-page"]
+._container_b4f1e20._fillDark_a1e5896 > div,
+
+[data-test="settings-page"]
+._container_9a0abb9 {
+
+    background: #09090b !important;
+    background-color: #09090b !important;
+    background-image: none !important;
+
+    border: none !important;
+    outline: none !important;
+
+    box-shadow: none !important;
+}
+
+
+/* Settings selects */
+[data-test="settings-page"] ._select_ef84104,
+[data-test="settings-page"]
+div._container_9a0abb9 > ._select_ef84104 {
+
+    background: #09090b !important;
+    background-color: #09090b !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    outline: none !important;
+
+    box-shadow: none !important;
+
+    border-radius: 6px !important;
+}
+
+
+/*
+   The select wrapper itself was still producing
+   the stupid rectangular box.
+*/
+[data-test="settings-page"]
+._container_9a0abb9:has(> ._select_ef84104) {
+    background: #09090b !important;
+    background-color: #09090b !important;
+
+    border: none !important;
+    outline: none !important;
+
+    box-shadow: none !important;
+
+    border-radius: 6px !important;
+}
+
+
+/* Slight hover indication */
+[data-test="settings-page"] ._select_ef84104:hover {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+}
+
+
+/* =========================================================
+   10. LUNA SETTINGS
+   Replace Cotton Candy's grey theme with Solo colours.
+   ========================================================= */
+
+/* Main Luna panel */
+[class="MuiContainer-root MuiContainer-maxWidthLg css-sot3eg"] {
+    background: #09090b !important;
+    background-color: #09090b !important;
+    background-image: none !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+}
+
+
+/* Luna rows: active + inactive */
+.css-1m2j012,
+.css-1v59atl,
+.css-1m2uggs,
+.css-1l78aht,
+.css-16a8gxx {
+    background: #09090b !important;
+    background-color: #09090b !important;
+    background-image: none !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+}
+
+
+/* Row hover */
+.css-1m2j012:hover,
+.css-1v59atl:hover,
+.css-1m2uggs:hover,
+.css-1l78aht:hover {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+}
+
+
+/* Luna top tabs */
+.css-71pw0n.Mui-selected {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+
+    color: white !important;
+
+    border-radius: 8px !important;
+}
+
+
+/* Luna text */
+.css-18r1alp,
+.css-yc8597,
+.css-pfqxe1,
+.css-1id1h8n,
+.css-axw7ok,
+.css-16hze37 {
+    color: var(--solo-text) !important;
+}
+
+
+/* =========================================================
+   11. LUNA THEME ROW LAYOUT
+   Long URLs must NEVER overlap action controls.
+   ========================================================= */
+
+/*
+   Theme/plugin cards.
+   Grid is much more reliable here than trying to fight
+   nested flex min-content sizing.
+*/
+.css-1m2j012,
+.css-1v59atl,
+.css-1m2uggs,
+.css-1l78aht {
+    min-width: 0 !important;
+
+    overflow: hidden !important;
+}
+
+
+/*
+   Generic flex descendants are allowed to shrink.
+*/
+.css-1m2j012 *,
+.css-1v59atl *,
+.css-1m2uggs *,
+.css-1l78aht * {
+    min-width: 0;
+}
+
+
+/*
+   URL text:
+   reserve space on the right for:
+     switch + reload + delete
+
+   This is the important part the previous patch lacked.
+*/
+.css-1m2j012 a[href^="http"],
+.css-1v59atl a[href^="http"],
+.css-1m2uggs a[href^="http"],
+.css-1l78aht a[href^="http"],
+
+.css-1m2j012 p,
+.css-1v59atl p,
+.css-1m2uggs p,
+.css-1l78aht p {
+
+    max-width: calc(100% - 150px) !important;
+
+    overflow: hidden !important;
+
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Action controls are sacred: never shrink */
+.css-1m2j012 button,
+.css-1v59atl button,
+.css-1m2uggs button,
+.css-1l78aht button,
+
+.css-1m2j012 .MuiSwitch-root,
+.css-1v59atl .MuiSwitch-root,
+.css-1m2uggs .MuiSwitch-root,
+.css-1l78aht .MuiSwitch-root {
+
+    flex: 0 0 auto !important;
+
+    flex-shrink: 0 !important;
+}
+
+
+/* =========================================================
+   12. LUNA SWITCH ALIGNMENT
+   ========================================================= */
+
+/*
+   Base / MUI positioning makes the switch sit a few px
+   higher than reload/delete.
+*/
+.css-1m2j012 .MuiSwitch-root,
+.css-1v59atl .MuiSwitch-root,
+.css-1m2uggs .MuiSwitch-root,
+.css-1l78aht .MuiSwitch-root {
+
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    transform: translateY(2px) !important;
+
+    align-self: center !important;
+}
+
+
+/* Action buttons themselves */
+.css-1m2j012 button,
+.css-1v59atl button,
+.css-1m2uggs button,
+.css-1l78aht button {
+    align-self: center !important;
+}
+
+
+/* =========================================================
+   13. LUNA INPUT
+   ========================================================= */
+
+.css-3ts090,
+[class*="MuiContainer"] input {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+
+    color: var(--solo-text) !important;
+
+    border-color: var(--solo-border) !important;
+
+    box-shadow: none !important;
+}
+
+/* =========================================================
    END
    ========================================================= */
