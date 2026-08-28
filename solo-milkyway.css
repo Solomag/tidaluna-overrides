@@ -1,13 +1,12 @@
-/* Solo's Milky Way overrides */
+/* =========================================
+   Solo's TidaLuna overrides
+   ========================================= */
 
 :root {
-    /* Убираем светлую рамку вокруг верхнего блока Home */
-    --feedbrdr: transparent;
+    /* Home feed container border */
+    --feedbrdr: transparent !important;
 
-    /*
-     * Шесть больших кнопок сверху.
-     * Делаем их такими же тёмными, как обычные карточки.
-     */
-    --v1: rgb(15, 15, 20);
-    --v2: rgb(15, 15, 20);
+    /* Home page six large shortcut cards */
+    --v1: rgb(15, 15, 20) !important;
+    --v2: rgb(15, 15, 20) !important;
 }
