@@ -1,6 +1,5 @@
 /* =========================================================
    Solo's Cotton Candy Nights cleanup
-   Keep the good parts. Remove the bullshit.
    ========================================================= */
 
 
@@ -8,7 +7,6 @@
    1. HOME
    ========================================================= */
 
-/* No border/glow around the Home feed */
 ._feed_412931c {
     border: 0 !important;
     border-color: transparent !important;
@@ -32,43 +30,32 @@
 
 
 /* =========================================================
-   2. GENERAL CARD HOVER
-   Grey highlight, NO text/icon inversion.
+   2. MAIN CARDS
+   Dark cards, no borders, normal darkening on hover.
    ========================================================= */
 
-/* Horizontal cards */
-._item_235a32d:hover {
-    background: rgb(30, 30, 34) !important;
-    background-image: none !important;
-    border-color: rgb(55, 55, 60) !important;
+._card_38c6c04 {
+    border: none !important;
+    border-width: 0 !important;
+    border-color: transparent !important;
     box-shadow: none !important;
+}
+
+/* Keep artwork normal when idle */
+._card_38c6c04 ._imageWrapper_aecc0c5 img {
     filter: none !important;
-    animation: none !important;
-
-    color: inherit !important;
 }
 
-/* Preserve normal text colours on horizontal-card hover */
-._item_235a32d:hover ._marketText_1lyag_1,
-._item_235a32d:hover ._link_6a45a19,
-._item_235a32d:hover span,
-._item_235a32d:hover p {
-    color: rgba(255, 255, 255, 0.88) !important;
-}
-
-/* Preserve normal icons */
-._item_235a32d:hover ._icon_77f3f89,
-._item_235a32d:hover ._icon_77f3f89 > use {
-    color: rgba(255, 255, 255, 0.82) !important;
-    fill: rgba(255, 255, 255, 0.82) !important;
-}
-
-
-/* Main square cards */
+/* Hover:
+   restrained grey card background, no glowing border */
 ._card_38c6c04:hover {
     background: rgb(30, 30, 34) !important;
     background-image: none !important;
-    border-color: rgb(55, 55, 60) !important;
+
+    border: none !important;
+    border-width: 0 !important;
+    border-color: transparent !important;
+
     box-shadow: none !important;
     filter: none !important;
     animation: none !important;
@@ -76,9 +63,31 @@
     color: inherit !important;
 }
 
-/* IMPORTANT:
-   Cotton Candy Nights separately changes the text inside
-   cards on hover. Override that too. */
+/* Cotton Candy Nights normally adds a colourful/light
+   overlay over the artwork. Replace it with normal dimming. */
+._card_38c6c04:hover ._overlay_91ba65b {
+    background: rgba(0, 0, 0, 0.22) !important;
+    background-image: none !important;
+
+    box-shadow: none !important;
+    filter: none !important;
+    animation: none !important;
+
+    border: none !important;
+    border-color: transparent !important;
+}
+
+/* Don't brighten / colour-shift the actual image */
+._card_38c6c04:hover ._imageWrapper_aecc0c5 img {
+    filter: brightness(0.78) !important;
+    transform: scale(1.02) !important;
+
+    transition:
+        filter 180ms ease,
+        transform 350ms ease !important;
+}
+
+/* Preserve normal text colour */
 ._card_38c6c04:hover ._marketText_1lyag_1,
 ._card_38c6c04:hover ._link_6a45a19,
 ._card_38c6c04:hover span,
@@ -86,7 +95,12 @@
     color: rgba(255, 255, 255, 0.88) !important;
 }
 
-/* Don't turn card icons/badges black on hover */
+/* Don't invert badges */
+._card_38c6c04:hover ._badge_57d1ccb {
+    filter: none !important;
+}
+
+/* Card icons */
 ._card_38c6c04:hover ._icon_77f3f89,
 ._card_38c6c04:hover ._icon_77f3f89 > use,
 ._card_38c6c04:hover ._marketIcon_1664p_1,
@@ -95,21 +109,57 @@
     fill: rgba(255, 255, 255, 0.82) !important;
 }
 
-/* Specifically undo the theme's badge inversion */
-._card_38c6c04:hover ._badge_57d1ccb {
+
+/* =========================================================
+   3. HORIZONTAL CARDS
+   Recently played etc.
+   ========================================================= */
+
+._item_235a32d {
+    border: none !important;
+    border-width: 0 !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+._item_235a32d:hover {
+    background: rgb(30, 30, 34) !important;
+    background-image: none !important;
+
+    border: none !important;
+    border-width: 0 !important;
+    border-color: transparent !important;
+
+    box-shadow: none !important;
     filter: none !important;
+    animation: none !important;
+
+    color: inherit !important;
+}
+
+._item_235a32d:hover ._marketText_1lyag_1,
+._item_235a32d:hover ._link_6a45a19,
+._item_235a32d:hover span,
+._item_235a32d:hover p,
+._item_235a32d:hover a {
+    color: rgba(255, 255, 255, 0.88) !important;
+}
+
+._item_235a32d:hover ._icon_77f3f89,
+._item_235a32d:hover ._icon_77f3f89 > use {
+    color: rgba(255, 255, 255, 0.82) !important;
+    fill: rgba(255, 255, 255, 0.82) !important;
 }
 
 
 /* =========================================================
-   3. LEFT SIDEBAR NAVIGATION
-   No permanent pills.
-   Grey highlight only on hover.
+   4. LEFT SIDEBAR NAVIGATION
    ========================================================= */
 
 ._navigationItem_4e9deae {
     background: transparent !important;
     background-image: none !important;
+
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
@@ -175,7 +225,7 @@
 
 
 /* =========================================================
-   4. SIDEBAR PLAYLISTS / FOLDERS
+   5. SIDEBAR PLAYLISTS / FOLDERS
    ========================================================= */
 
 ._contentItem_684cbbe,
@@ -202,26 +252,20 @@
 
 
 /* =========================================================
-   5. SIDEBAR SCROLL FIX
-   Undo Cotton Candy Nights' destructive navigation overlap.
-   This should stop "All playlists" getting stranded over
-   the scrolling playlist list.
+   6. SIDEBAR SCROLL FIX
    ========================================================= */
 
-/* Theme uses -140px here, causing the playlist area to
-   overlap the navigation/header region. */
+/* Undo the theme's -140px overlap hack */
 #sidebar > div._container_4454af7 > div > div {
     margin-bottom: 0 !important;
 }
 
-/* Keep navigation in normal stacking context */
 ._fixedNavigation_00842ee {
     position: relative !important;
     z-index: auto !important;
 }
 
-/* Sidebar section headers should scroll normally rather
-   than float over playlist entries. */
+/* All playlists should scroll normally */
 ._sectionHeader_ca54638,
 ._sectionHeader_f4932eb {
     position: static !important;
@@ -232,8 +276,8 @@
 
 
 /* =========================================================
-   6. LYRICS
-   Remove Cotton Candy Nights glass box.
+   7. LYRICS
+   Remove glass box.
    ========================================================= */
 
 #nowPlaying [class="_wrapper_512d5f4"] {
@@ -264,7 +308,7 @@
 
 
 /* =========================================================
-   7. PROFILE / CONTEXT MENU
+   8. PROFILE / CONTEXT MENU
    ========================================================= */
 
 ._container_d3060bb._visible_4bed23e,
@@ -333,19 +377,28 @@
 
 
 /* =========================================================
-   8. LOG OUT
-   Same geometry as the other menu entries.
+   9. LOG OUT
+   Make it a completely ordinary context-menu item.
    ========================================================= */
 
+._contextMenu_8606b2d ._logout_d89cefd._actionItem_e0c1e65,
+._container_d3060bb._visible_4bed23e
 ._logout_d89cefd._actionItem_e0c1e65 {
+
     background: transparent !important;
     background-color: transparent !important;
     background-image: none !important;
 
-    /* Cotton Candy Nights originally gives Logout its own
-       40px margins + scale. Kill both. */
-    margin: 0 !important;
+    /* Kill Cotton Candy Nights' special Logout geometry */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     transform: none !important;
+
+    /* Match the horizontal inset of normal menu entries */
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+
+    box-sizing: border-box !important;
 
     border-radius: 6px !important;
     box-shadow: none !important;
@@ -353,12 +406,13 @@
     color: rgba(255, 255, 255, 0.88) !important;
 }
 
+/* Do NOT add another offset to the inner text */
+._logout_d89cefd._actionItem_e0c1e65
+._actionTextInner_a14f37c {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
 
-/* Align Logout's inner content/text with Profile,
-   Settings, Help, etc. */
-._logout_d89cefd._actionItem_e0c1e65 ._actionTextInner_a14f37c {
     color: rgba(255, 255, 255, 0.88) !important;
-    padding-left: 4px !important;
 }
 
 ._logout_d89cefd._actionItem_e0c1e65 span {
@@ -366,16 +420,14 @@
 }
 
 
-/* Logout hover = ordinary menu hover */
+/* Logout hover = normal menu hover */
 ._logout_d89cefd._actionItem_e0c1e65:hover {
     background: rgba(255, 255, 255, 0.10) !important;
     background-image: none !important;
 
     color: white !important;
 
-    border-radius: 6px !important;
     box-shadow: none !important;
-
     filter: none !important;
     animation: none !important;
 
@@ -383,6 +435,93 @@
 }
 
 ._logout_d89cefd._actionItem_e0c1e65:hover span,
-._logout_d89cefd._actionItem_e0c1e65:hover ._actionTextInner_a14f37c {
+._logout_d89cefd._actionItem_e0c1e65:hover
+._actionTextInner_a14f37c {
     color: white !important;
+}
+
+
+/* =========================================================
+   10. FOOTER PLAYER
+   Remove the separate "boxes" inside the player.
+   Let them visually inherit the footer itself.
+   ========================================================= */
+
+/* Left track-information rectangle */
+._player_8c80ae6 ._trackContent_7b758a9 {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    border-width: 0 !important;
+    border-color: transparent !important;
+
+    box-shadow: none !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* Right utility-controls rectangle */
+._player_8c80ae6 ._utilityButtons_4d7aaf9 {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    border-width: 0 !important;
+    border-color: transparent !important;
+
+    box-shadow: none !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* Individual utility buttons should also have no permanent
+   little boxes of their own. */
+._player_8c80ae6 ._utilityButtons_4d7aaf9 button {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* Keep a subtle hover indication */
+._player_8c80ae6 ._utilityButtons_4d7aaf9 button:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    background-image: none !important;
+
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+
+/* Track controls such as favourite / menu:
+   no decorative boxes or glow */
+._player_8c80ae6 ._trackContent_7b758a9 button {
+    box-shadow: none !important;
+}
+
+
+/* Artwork itself should remain clean.
+   Cotton Candy Nights normally adds a bright outline
+   when hovering the current artwork. */
+._player_8c80ae6 ._artworkContainer_3cdbf46:hover {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Keep the theme's useful "hover artwork = darker"
+   behaviour, just without the outline */
+._player_8c80ae6
+._artworkContainer_3cdbf46:hover
+._artwork_633cf14 {
+    filter: brightness(0.45) saturate(1.05) !important;
 }
