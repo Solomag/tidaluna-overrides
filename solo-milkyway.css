@@ -270,7 +270,7 @@ div._searchField_b2eb7f7,._searchFieldWithPopover_267e090>._searchField_b2eb7f7,
 }
 
 /* 5. COLLECTION ARTWORK
-   Never hide the actual artwork. Only dim it. */
+   Never hide the actual artwork. Only dim it.  */
 [data-track--page-id^="mycollection_"] ._cellContainer_19b23ad img,
 [data-track--page-id^="mycollection_"] ._cellContainer_19b23ad picture,
 [data-track--page-id^="mycollection_"] ._cellContainer_19b23ad [class*="_image_"],
