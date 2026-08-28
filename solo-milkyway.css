@@ -1,21 +1,53 @@
+/* { * *
+ "name": "Solo Dark",
+ "author": "Solo",
+ "description": "Clean dark theme for TidaLuna"
+ * } */
+
+
 /* =========================================================
-   Solo's Cotton Candy Nights cleanup
-   Unified dark design: #09090b
+   SOLO DARK
+   Base: #09090b
+   Philosophy:
+   - preserve TIDAL layout
+   - one dark surface language
+   - no bright gradients
+   - no decorative borders
+   - subtle grey hover
    ========================================================= */
 
 :root {
     --solo-bg: #09090b;
+    --solo-surface: #09090b;
+    --solo-surface-raised: #111114;
     --solo-hover: #1e1e22;
     --solo-hover-soft: rgba(255, 255, 255, 0.08);
+    --solo-hover-softer: rgba(255, 255, 255, 0.055);
+
+    --solo-text: rgba(255, 255, 255, 0.92);
+    --solo-text-secondary: rgba(255, 255, 255, 0.68);
+    --solo-text-tertiary: rgba(255, 255, 255, 0.50);
+
     --solo-border: rgba(255, 255, 255, 0.08);
 
-    --solo-text: rgba(255, 255, 255, 0.88);
-    --solo-text-soft: rgba(255, 255, 255, 0.68);
+    --wave-color-solid-base-brighter: #09090b;
 }
 
 
 /* =========================================================
-   1. HOME
+   1. GLOBAL
+   ========================================================= */
+
+body,
+#root,
+#wimp,
+#main {
+    background-color: var(--solo-bg);
+}
+
+
+/* =========================================================
+   2. HOME TOP FEED
    ========================================================= */
 
 ._feed_412931c {
@@ -25,19 +57,20 @@
 }
 
 
-/* Six large Home shortcuts */
+/* Six Home shortcuts */
 ._shortcutItem_6c8e7b4 {
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
+    background: var(--solo-surface) !important;
     background-image: none !important;
 
+    border: none !important;
     box-shadow: none !important;
+
     filter: none !important;
+    animation: none !important;
 }
 
 ._shortcutItem_6c8e7b4:hover {
     background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
     background-image: none !important;
 
     box-shadow: none !important;
@@ -46,63 +79,55 @@
 
 
 /* =========================================================
-   2. MAIN CARDS
-   Unified height, no borders, dark hover.
+   3. MAIN CARDS
    ========================================================= */
 
 ._card_38c6c04 {
-    background-color: var(--solo-bg) !important;
+    background: var(--solo-surface) !important;
+    background-image: none !important;
 
     border: none !important;
-    border-width: 0 !important;
-    border-color: transparent !important;
-
     box-shadow: none !important;
+
+    /*
+       Fixed geometry.
+       All cards in the carousel get identical height.
+    */
+    box-sizing: border-box !important;
 }
 
 
-/* Reserve room for TWO title lines.
-   This keeps every card in a horizontal carousel aligned. */
-._card_38c6c04 ._title_7c8d96a,
+/*
+   Reserve EXACTLY two lines for card titles.
+   This fixes the remaining ~8 px mismatch between
+   one-line and two-line titles.
+*/
 ._card_38c6c04 [class*="_title_"] {
-    min-height: 2.6em;
+    min-height: 40px !important;
+    max-height: 40px !important;
+
+    line-height: 20px !important;
+
+    overflow: hidden !important;
 }
 
 
-/* Artwork normal when idle */
-._card_38c6c04 ._imageWrapper_aecc0c5 img {
-    filter: none !important;
-}
-
-
-/* Hover */
+/* Card hover */
 ._card_38c6c04:hover {
     background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
     background-image: none !important;
 
     border: none !important;
-    border-width: 0 !important;
-    border-color: transparent !important;
-
     box-shadow: none !important;
+
     filter: none !important;
     animation: none !important;
-
-    color: inherit !important;
 }
 
 
-/* Replace bright artwork effect with dimming */
-._card_38c6c04:hover ._overlay_91ba65b {
-    background: rgba(0, 0, 0, 0.22) !important;
-    background-image: none !important;
-
-    box-shadow: none !important;
+/* Artwork */
+._card_38c6c04 ._imageWrapper_aecc0c5 img {
     filter: none !important;
-    animation: none !important;
-
-    border: none !important;
 }
 
 ._card_38c6c04:hover ._imageWrapper_aecc0c5 img {
@@ -115,6 +140,16 @@
 }
 
 
+/* No coloured artwork overlay */
+._card_38c6c04:hover ._overlay_91ba65b {
+    background: rgba(0, 0, 0, 0.18) !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
 /* Never invert card text */
 ._card_38c6c04:hover ._marketText_1lyag_1,
 ._card_38c6c04:hover ._link_6a45a19,
@@ -123,58 +158,40 @@
     color: var(--solo-text) !important;
 }
 
-._card_38c6c04:hover ._badge_57d1ccb {
-    filter: none !important;
-}
-
-._card_38c6c04:hover ._icon_77f3f89,
-._card_38c6c04:hover ._icon_77f3f89 > use,
-._card_38c6c04:hover ._marketIcon_1664p_1,
-._card_38c6c04:hover ._marketIcon_1664p_1 * {
-    color: rgba(255, 255, 255, 0.82) !important;
-    fill: rgba(255, 255, 255, 0.82) !important;
-}
-
 
 /* =========================================================
-   3. HORIZONTAL CARDS
+   4. HORIZONTAL CARDS
    ========================================================= */
 
 ._item_235a32d {
-    background-color: var(--solo-bg) !important;
+    background: var(--solo-surface) !important;
+    background-image: none !important;
 
     border: none !important;
-    border-width: 0 !important;
-    border-color: transparent !important;
-
     box-shadow: none !important;
 }
 
 ._item_235a32d:hover {
     background: var(--solo-hover) !important;
-    background-color: var(--solo-hover) !important;
     background-image: none !important;
 
     border: none !important;
-
     box-shadow: none !important;
+
     filter: none !important;
     animation: none !important;
-
-    color: inherit !important;
 }
 
-._item_235a32d:hover ._marketText_1lyag_1,
-._item_235a32d:hover ._link_6a45a19,
 ._item_235a32d:hover span,
 ._item_235a32d:hover p,
-._item_235a32d:hover a {
+._item_235a32d:hover a,
+._item_235a32d:hover ._marketText_1lyag_1 {
     color: var(--solo-text) !important;
 }
 
 
 /* =========================================================
-   4. LEFT SIDEBAR
+   5. LEFT SIDEBAR
    ========================================================= */
 
 ._navigationItem_4e9deae {
@@ -185,47 +202,27 @@
     outline: none !important;
     box-shadow: none !important;
 
-    border-radius: 8px !important;
-
-    color: rgba(255, 255, 255, 0.78) !important;
+    color: var(--solo-text-secondary) !important;
 }
 
-._navigationItem_4e9deae ._icon_77f3f89,
-._navigationItem_4e9deae ._icon_b8b52c1 {
-    fill: var(--solo-text-soft) !important;
-    color: var(--solo-text-soft) !important;
-}
-
-
-/* Hover */
 ._navigationItem_4e9deae:hover {
     background: var(--solo-hover-soft) !important;
     background-image: none !important;
 
-    color: rgba(255, 255, 255, 0.92) !important;
+    color: var(--solo-text) !important;
 
     border-radius: 8px !important;
-    outline: none !important;
     box-shadow: none !important;
-
-    filter: none !important;
-    animation: none !important;
 }
 
-
-/* Selected */
 ._navigationItem_4e9deae._selected_29027d1 {
     background: transparent !important;
     background-image: none !important;
 
-    color: rgba(255, 255, 255, 0.95) !important;
+    color: var(--solo-text) !important;
 
-    outline: none !important;
     border: none !important;
     box-shadow: none !important;
-
-    filter: none !important;
-    animation: none !important;
 }
 
 ._navigationItem_4e9deae._selected_29027d1:hover {
@@ -233,67 +230,76 @@
 }
 
 
+/* Icons */
+._navigationItem_4e9deae svg,
+._navigationItem_4e9deae svg use {
+    color: var(--solo-text-secondary) !important;
+    fill: currentColor !important;
+}
+
+._navigationItem_4e9deae:hover svg,
+._navigationItem_4e9deae:hover svg use {
+    color: var(--solo-text) !important;
+}
+
+
 /* =========================================================
-   5. SIDEBAR PLAYLISTS
+   6. SIDEBAR PLAYLISTS
    ========================================================= */
 
 ._contentItem_684cbbe,
 ._contentItem_684cbbe._selected_ae83ba5 {
     background: transparent !important;
-    color: rgba(255, 255, 255, 0.78) !important;
+    color: var(--solo-text-secondary) !important;
 }
 
 ._contentItem_684cbbe:hover {
-    background: rgba(255, 255, 255, 0.07) !important;
+    background: var(--solo-hover-soft) !important;
     border-radius: 8px !important;
 }
 
-._contentItem_684cbbe ._thumbnail_f82abfa,
-._contentItem_684cbbe:hover ._thumbnail_f82abfa,
-._contentItem_684cbbe._selected_ae83ba5 ._thumbnail_f82abfa {
+._thumbnail_f82abfa {
+    background: var(--solo-hover-soft) !important;
+
     outline: none !important;
     box-shadow: none !important;
 }
 
-._thumbnail_f82abfa {
-    background: rgba(255, 255, 255, 0.07) !important;
-}
 
-
-/* =========================================================
-   6. SIDEBAR SCROLL FIX
-   ========================================================= */
-
-#sidebar > div._container_4454af7 > div > div {
-    margin-bottom: 0 !important;
-}
-
-._fixedNavigation_00842ee {
-    position: relative !important;
-    z-index: auto !important;
-}
-
+/* All playlists must scroll normally */
 ._sectionHeader_ca54638,
 ._sectionHeader_f4932eb {
     position: static !important;
     top: auto !important;
-    z-index: auto !important;
+
     background: transparent !important;
+
+    z-index: auto !important;
 }
 
 
 /* =========================================================
    7. EXPLORE
-   Restore readable buttons and unify them.
    ========================================================= */
 
-[data-test-page-name="explore"] button,
-[data-test-page-name="explore"] [role="button"] {
-    color: var(--solo-text) !important;
+/*
+   Cotton Candy Nights used var(--vv) here.
+   Solo Dark explicitly gives Explore controls a readable
+   common surface instead.
+*/
 
-    background: rgba(255, 255, 255, 0.10) !important;
-    background-color: rgba(255, 255, 255, 0.10) !important;
+[data-test-page-name="explore"] ._text_d2b2b39 {
+    color: var(--solo-text) !important;
+    -webkit-text-fill-color: var(--solo-text) !important;
+}
+
+
+/* Known Explore category button */
+[data-test-page-name="explore"] ._button_f3463fe {
+    background: var(--solo-hover) !important;
     background-image: none !important;
+
+    color: var(--solo-text) !important;
 
     border: none !important;
     box-shadow: none !important;
@@ -302,106 +308,151 @@
     animation: none !important;
 }
 
+[data-test-page-name="explore"] ._button_f3463fe:hover {
+    background: rgba(255, 255, 255, 0.16) !important;
 
-/* Explore text that Cotton Candy Nights turns into --vv */
-[data-test-page-name="explore"] ._text_d2b2b39,
-[data-test-page-name="explore"] button span,
-[data-test-page-name="explore"] [role="button"] span {
-    color: var(--solo-text) !important;
-    -webkit-text-fill-color: var(--solo-text) !important;
+    color: white !important;
 }
 
 
-/* Explore icons */
+/*
+   Other Explore controls.
+   Important: target TIDAL buttons, not arbitrary text.
+*/
+[data-test-page-name="explore"] button {
+    color: var(--solo-text) !important;
+}
+
+[data-test-page-name="explore"] button span {
+    color: inherit !important;
+    -webkit-text-fill-color: currentColor !important;
+}
+
 [data-test-page-name="explore"] button svg,
-[data-test-page-name="explore"] [role="button"] svg {
+[data-test-page-name="explore"] button svg use {
+    color: currentColor !important;
+    fill: currentColor !important;
+}
+
+
+/* Explore filter/category buttons */
+[data-test-page-name="explore"] button:not(._viewAllButton_4b4f90c) {
+    background-color: var(--solo-hover) !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+[data-test-page-name="explore"] button:not(._viewAllButton_4b4f90c):hover {
+    background-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+
+/* =========================================================
+   8. VIEW ALL / CAROUSEL BUTTONS
+   ========================================================= */
+
+._viewAllButton_4b4f90c > ._marketText_1lyag_1 {
+    background: var(--solo-hover) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+._viewAllButton_4b4f90c > ._marketText_1lyag_1:hover {
+    background: rgba(255, 255, 255, 0.16) !important;
+
+    color: white !important;
+}
+
+
+/* Horizontal arrows */
+._buttonContainer_a07db07 button,
+.css-1xlzpjd {
+    background: var(--solo-hover) !important;
+    background-image: none !important;
+
+    box-shadow: none !important;
+}
+
+._buttonContainer_a07db07 svg,
+._buttonContainer_a07db07 svg use,
+.css-1xlzpjd svg,
+.css-1xlzpjd svg use {
     color: var(--solo-text) !important;
     fill: currentColor !important;
 }
 
 
-/* Consistent hover */
-[data-test-page-name="explore"] button:hover,
-[data-test-page-name="explore"] [role="button"]:hover {
-    background: rgba(255, 255, 255, 0.16) !important;
-    background-image: none !important;
-
-    color: white !important;
-
-    box-shadow: none !important;
-    filter: none !important;
-}
-
-
 /* =========================================================
-   8. FEED
-   Remove giant grey Cotton Candy Nights panel.
+   9. FEED
    ========================================================= */
 
 [data-test-page-name="feed"]
-[class="_defaultStyles_a1b9da9 _container_d43f21d"] {
+._defaultStyles_a1b9da9._container_d43f21d {
 
     background: transparent !important;
-    background-color: transparent !important;
     background-image: none !important;
 
     border: none !important;
     box-shadow: none !important;
 
     backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
 
-    /* Theme added 1em just for the grey box */
     padding: 0 !important;
 
-    border-radius: 0 !important;
-
-    --wave-color-text-main: rgba(255, 255, 255, 0.88) !important;
-    --market-core-text-10-color: rgba(255, 255, 255, 0.88) !important;
+    --wave-color-text-main: var(--solo-text) !important;
+    --market-core-text-10-color: var(--solo-text) !important;
 }
 
 
-/* Feed entries get our normal dark-card treatment */
-[data-test-page-name="feed"] [class*="_item_"],
-[data-test-page-name="feed"] [class*="_card_"] {
-    background-color: var(--solo-bg);
+/*
+   Feed secondary text.
+   Fixes black "by <artist>" / metadata.
+*/
+[data-test-page-name="feed"] span,
+[data-test-page-name="feed"] p,
+[data-test-page-name="feed"] a {
+    color: var(--solo-text-secondary);
+}
+
+[data-test-page-name="feed"] a:hover {
+    color: var(--solo-text) !important;
+}
+
+
+/* Main titles remain bright */
+[data-test-page-name="feed"] h1,
+[data-test-page-name="feed"] h2,
+[data-test-page-name="feed"] h3,
+[data-test-page-name="feed"] ._marketText_1lyag_1 {
+    color: var(--solo-text) !important;
 }
 
 
 /* =========================================================
-   9. SETTINGS
-   Undo Cotton Candy Nights light surfaces.
+   10. SETTINGS
    ========================================================= */
 
 [data-test="settings-page"] {
-    --wave-color-text-main: rgba(255, 255, 255, 0.88) !important;
-    --market-core-text-10-color: rgba(255, 255, 255, 0.88) !important;
+    --wave-color-text-main: var(--solo-text) !important;
+    --market-core-text-10-color: var(--solo-text) !important;
 
-    --wave-color-solid-contrast-fill: rgba(255, 255, 255, 0.88) !important;
-    --wave-color-solid-contrast-darkest: rgba(255, 255, 255, 0.88) !important;
+    --wave-color-solid-contrast-fill: var(--solo-text) !important;
+    --wave-color-solid-contrast-darkest: var(--solo-text) !important;
 }
 
 
-/* Main settings groups */
+/* Settings groups */
 [data-test="settings-page"] ._container_b4f1e20._fillDark_a1e5896,
-[data-test="settings-page"] ._container_b4f1e20._noFill_8429ea8 {
-
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
-    background-image: none !important;
-
-    border: none !important;
-    box-shadow: none !important;
-}
-
-
-/* Inner settings surfaces */
-[data-test="settings-page"]
-._container_b4f1e20._fillDark_a1e5896 > div,
+[data-test="settings-page"] ._container_b4f1e20._noFill_8429ea8,
 [data-test="settings-page"] ._container_9a0abb9 {
 
-    background: var(--solo-bg) !important;
-    background-color: var(--solo-bg) !important;
+    background: var(--solo-surface) !important;
     background-image: none !important;
 
     border: none !important;
@@ -417,78 +468,140 @@
 }
 
 
-/* Select boxes */
+/* Selects */
 [data-test="settings-page"] ._select_ef84104 {
+    background: var(--solo-hover) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   11. TOP SEARCH FIELD
+   ========================================================= */
+
+._searchField_b2eb7f7,
+.searchFieldWithinSearchFieldWithPopover {
+
     background: var(--solo-hover) !important;
     background-color: var(--solo-hover) !important;
     background-image: none !important;
 
-    color: var(--solo-text) !important;
-
     border: none !important;
     box-shadow: none !important;
+
+    backdrop-filter: none !important;
 }
 
 
-/* Checked / unchecked controls */
-[data-test="settings-page"] ._checked_3422d33._label_12bd8cc,
-[data-test="settings-page"] ._unchecked_a1bcc16._label_12bd8cc {
-    background-color: var(--solo-hover) !important;
+/* Input */
+._searchField_b2eb7f7 input,
+._searchField_b2eb7f7 input:hover,
+._searchField_b2eb7f7 input:focus {
     color: var(--solo-text) !important;
+    -webkit-text-fill-color: var(--solo-text) !important;
+}
+
+._searchField_b2eb7f7 input::placeholder {
+    color: var(--solo-text-secondary) !important;
+    -webkit-text-fill-color: var(--solo-text-secondary) !important;
 }
 
 
-/* Settings buttons */
-[data-test="settings-page"] button {
-    box-shadow: none !important;
-}
-
-[data-test="settings-page"] button:hover {
-    background-color: var(--solo-hover) !important;
-    box-shadow: none !important;
+/* Search icon / close */
+._searchField_b2eb7f7 svg,
+._searchField_b2eb7f7 svg use,
+._searchField_b2eb7f7 button svg,
+._searchField_b2eb7f7 button svg use {
+    color: var(--solo-text-secondary) !important;
+    fill: currentColor !important;
 }
 
 
 /* =========================================================
-   10. LYRICS
+   12. SEARCH POPOVER / RECENT SEARCHES
    ========================================================= */
 
-#nowPlaying [class="_wrapper_512d5f4"] {
-    background: transparent !important;
-    background-color: transparent !important;
+/*
+   This is the container Cotton Candy Nights made white.
+*/
+._container_f1be359,
+._container_79ca9c5 {
+
+    background: var(--solo-surface-raised) !important;
+    background-color: var(--solo-surface-raised) !important;
     background-image: none !important;
 
+    color: var(--solo-text) !important;
+
     border: none !important;
-    box-shadow: none !important;
+
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.45) !important;
 
     backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-
-    border-radius: 0 !important;
-    padding-left: 0 !important;
 }
 
-#nowPlaying
-[class="_panelWrapper_b31994f _panelWrapperActive_1904d94"] {
-    background: transparent !important;
-    background-image: none !important;
 
-    border: none !important;
-    box-shadow: none !important;
+/* Everything inside defaults to readable text */
+._container_f1be359 ._marketText_1lyag_1,
+._container_f1be359 span,
+._container_f1be359 p,
+._container_f1be359 a,
 
-    backdrop-filter: none !important;
+._container_79ca9c5 ._marketText_1lyag_1,
+._container_79ca9c5 span,
+._container_79ca9c5 p,
+._container_79ca9c5 a {
+
+    color: var(--solo-text) !important;
+    -webkit-text-fill-color: currentColor !important;
+}
+
+
+/* Secondary search-result metadata */
+._container_f1be359 [class*="_artistTextContainer_"],
+._container_f1be359 [class*="_detailContainer_"],
+._container_79ca9c5 [class*="_artistTextContainer_"],
+._container_79ca9c5 [class*="_detailContainer_"] {
+
+    color: var(--solo-text-secondary) !important;
+}
+
+
+/* Search highlight:
+   subtle grey rather than black */
+span._highlight_a043e62 {
+    color: white !important;
+
+    background: rgba(255, 255, 255, 0.12) !important;
+
+    border-radius: 3px;
+}
+
+
+/* Search-result hover */
+._container_f1be359 [role="button"]:hover,
+._container_79ca9c5 [role="button"]:hover {
+
+    background: var(--solo-hover-soft) !important;
 }
 
 
 /* =========================================================
-   11. PROFILE / CONTEXT MENU
+   13. CONTEXT MENUS / PROFILE
    ========================================================= */
 
 ._container_d3060bb._visible_4bed23e,
 ._contextMenu_8606b2d,
 ._subMenu_706d970,
 ._submenu_1951fe4 {
-    background: rgb(28, 28, 31) !important;
+
+    background: var(--solo-surface-raised) !important;
     background-image: none !important;
 
     color: var(--solo-text) !important;
@@ -496,20 +609,20 @@
     border: 1px solid var(--solo-border) !important;
     border-radius: 8px !important;
 
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.45) !important;
 
     backdrop-filter: none !important;
-    animation: none !important;
 
     --wave-color-opacity-contrast-fill-thick:
-        rgba(255, 255, 255, 0.88) !important;
+        var(--solo-text) !important;
 
     --wave-color-solid-contrast-fill:
-        rgba(255, 255, 255, 0.88) !important;
+        var(--solo-text) !important;
 }
 
 
-/* Ordinary menu entries */
+/* Entries */
 ._actionItem_e0c1e65 {
     background: transparent !important;
     background-image: none !important;
@@ -517,33 +630,20 @@
     color: var(--solo-text) !important;
 
     border-radius: 6px !important;
-    box-shadow: none !important;
 }
 
 ._actionItem_e0c1e65:hover {
     background: var(--solo-hover-soft) !important;
-    background-image: none !important;
 
     color: white !important;
 
     box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
 }
 
 
-/* =========================================================
-   12. LOG OUT
-   ========================================================= */
-
-._contextMenu_8606b2d
-._logout_d89cefd._actionItem_e0c1e65,
-
-._container_d3060bb._visible_4bed23e
+/* Logout */
 ._logout_d89cefd._actionItem_e0c1e65 {
-
     background: transparent !important;
-    background-image: none !important;
 
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -555,9 +655,6 @@
 
     box-sizing: border-box !important;
 
-    border-radius: 6px !important;
-    box-shadow: none !important;
-
     color: var(--solo-text) !important;
 }
 
@@ -566,46 +663,114 @@
 
     padding-left: 0 !important;
     margin-left: 0 !important;
-
-    color: var(--solo-text) !important;
-}
-
-._logout_d89cefd._actionItem_e0c1e65:hover {
-    background: var(--solo-hover-soft) !important;
-    background-image: none !important;
-
-    color: white !important;
-
-    box-shadow: none !important;
-    filter: none !important;
-    animation: none !important;
 }
 
 
 /* =========================================================
-   13. FOOTER PLAYER
-   Remove inner capsules.
+   14. LYRICS
+   ========================================================= */
+
+#nowPlaying ._wrapper_512d5f4 {
+    background: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+
+    backdrop-filter: none !important;
+}
+
+
+/* =========================================================
+   15. FOOTER PLAYER
    ========================================================= */
 
 ._player_8c80ae6 ._trackContent_7b758a9,
 ._player_8c80ae6 ._utilityButtons_4d7aaf9 {
 
     background: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+
+    backdrop-filter: none !important;
+}
+
+
+/* =========================================================
+   16. CURRENT TRACK FLEX PRIORITY
+   ========================================================= */
+
+/*
+   Current track is more important than UpNext.
+
+   Allow it to take available space and prevent UpNext
+   from pushing it into oblivion.
+*/
+._player_8c80ae6 ._trackContent_7b758a9 {
+    flex: 1 1 auto !important;
+    min-width: 180px !important;
+
+    overflow: hidden !important;
+}
+
+
+/* Current title/artist text */
+._player_8c80ae6 ._trackContent_7b758a9 span,
+._player_8c80ae6 ._trackContent_7b758a9 a {
+
+    color: var(--solo-text) !important;
+
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   17. QUALITY / BITRATE BADGE
+   ========================================================= */
+
+._gradientMax_9111fba,
+._gradientHigh_87f2c3b,
+._gradientLow_3f9bc0d,
+._badge_7b2911e {
+
+    background: transparent !important;
     background-color: transparent !important;
     background-image: none !important;
 
     border: none !important;
-    border-width: 0 !important;
-
     box-shadow: none !important;
 
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+    animation: none !important;
 }
 
 
-/* Utility buttons */
+/*
+   Hover must NOT create a rectangular highlight.
+*/
+._gradientMax_9111fba:hover,
+._gradientHigh_87f2c3b:hover,
+._gradientLow_3f9bc0d:hover,
+._badge_7b2911e:hover {
+
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+
+/* =========================================================
+   18. PLAYER UTILITY BUTTONS
+   ========================================================= */
+
 ._player_8c80ae6 ._utilityButtons_4d7aaf9 button {
+
     background: transparent !important;
     background-image: none !important;
 
@@ -614,120 +779,321 @@
 }
 
 ._player_8c80ae6 ._utilityButtons_4d7aaf9 button:hover {
-    background: var(--solo-hover-soft) !important;
+
+    background: transparent !important;
     background-image: none !important;
 
     box-shadow: none !important;
-    filter: none !important;
-}
-
-
-/* Artwork */
-._player_8c80ae6 ._artworkContainer_3cdbf46:hover {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-._player_8c80ae6
-._artworkContainer_3cdbf46:hover
-._artwork_633cf14 {
-
-    filter: brightness(0.45) saturate(1.05) !important;
+    filter: brightness(1.25) !important;
 }
 
 
 /* =========================================================
-   14. QUALITY / BITRATE BADGE
-   Make it part of the player instead of a capsule.
+   19. UPNEXT PLUGIN
    ========================================================= */
 
-._player_8c80ae6 ._gradientMax_9111fba,
-._player_8c80ae6 ._gradientHigh_87f2c3b,
-._player_8c80ae6 ._gradientLow_3f9bc0d {
+/*
+   Original plugin uses flex-shrink: 0.
+   That's exactly why a long next-track can crush
+   the current track.
 
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-
-    border: none !important;
-    border-radius: 0 !important;
-
-    box-shadow: none !important;
-
-    animation: none !important;
-    filter: none !important;
-}
-
-
-/* Badge wrapper */
-._player_8c80ae6 ._badge_7b2911e {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-
-    border: none !important;
-    border-radius: 0 !important;
-
-    box-shadow: none !important;
-
-    animation: none !important;
-}
-
-
-/* No glow on hover */
-._player_8c80ae6 ._badge_7b2911e:hover {
-    background: transparent !important;
-    box-shadow: none !important;
-
-    filter: none !important;
-    animation: none !important;
-}
-
-
-/* =========================================================
-   15. UPNEXT PLUGIN
-   The plugin supplies its own .upnext-* CSS.
-   Integrate it into our footer.
-   ========================================================= */
-
+   Give UpNext a finite width and allow it to shrink.
+*/
 .upnext-container {
     background: transparent !important;
-    background-color: transparent !important;
     background-image: none !important;
 
     border: none !important;
-    border-width: 0 !important;
-
     box-shadow: none !important;
 
-    /* Keep its useful spacing/structure */
     border-radius: 0 !important;
+
+    flex: 0 1 230px !important;
+
+    width: 230px !important;
+    max-width: 230px !important;
+    min-width: 120px !important;
+
+    overflow: hidden !important;
 }
 
 
-/* Same subtle interaction language as everything else */
+/* No rectangular hover */
 .upnext-container:hover {
-    background: var(--solo-hover-soft) !important;
+    background: transparent !important;
     background-image: none !important;
 
     box-shadow: none !important;
 }
 
 
-/* Cover shouldn't have another frame */
+/* Cover */
 .upnext-cover {
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
+
+    flex-shrink: 0 !important;
 }
 
 
-/* UpNext text */
-.upnext-title {
+/* Track text area */
+.upnext-track {
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   20. UPNEXT MARQUEE
+   ========================================================= */
+
+/*
+   CSS marquee without JS.
+
+   Text remains still if short.
+   Overflowing text gets room to move on hover.
+*/
+
+.upnext-title,
+.upnext-artist {
+    display: block;
+
+    width: max-content;
+    min-width: 100%;
+
+    white-space: nowrap !important;
+
+    overflow: visible !important;
+    text-overflow: clip !important;
+
     color: var(--solo-text) !important;
 }
 
-.upnext-artist,
-.upnext-label {
-    color: var(--solo-text-soft) !important;
+
+/*
+   We cannot detect overflow itself in pure CSS.
+   Therefore animation is activated on hover.
+   Short text technically moves too, but because its
+   width ~= container width the displacement is negligible.
+*/
+@keyframes solo-upnext-marquee {
+    0%,
+    15% {
+        transform: translateX(0);
+    }
+
+    75%,
+    90% {
+        transform: translateX(
+            min(0px, calc(220px - 100%))
+        );
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.upnext-container:hover .upnext-title {
+    animation:
+        solo-upnext-marquee 8s
+        ease-in-out infinite !important;
+}
+
+
+/* Label less prominent */
+.upnext-label,
+.upnext-artist {
+    color: var(--solo-text-secondary) !important;
+}
+
+
+/* =========================================================
+   21. PLAY QUEUE
+   ========================================================= */
+
+/*
+   Cotton Candy Nights heavily restyled this.
+   Solo Dark makes it a normal dark sidebar.
+*/
+
+._container_b3e8f28,
+._container_b3e8f28._nowPlayingVisible_6285d60 {
+
+    background: var(--solo-surface-raised) !important;
+    background-color: var(--solo-surface-raised) !important;
+    background-image: none !important;
+
+    border: none !important;
+
+    box-shadow:
+        -8px 0 24px rgba(0, 0, 0, 0.22) !important;
+
+    backdrop-filter: none !important;
+
+    color: var(--solo-text) !important;
+}
+
+
+/* Queue text */
+._playQueueItems_84488b2 ._marketText_1lyag_1,
+._playQueueItems_84488b2 a,
+._playQueueItems_84488b2 span {
+
+    color: var(--solo-text) !important;
+
+    text-shadow: none !important;
+}
+
+
+/* Artist */
+._playQueueItems_84488b2
+._artistText_73966a1 {
+
+    color: var(--solo-text-secondary) !important;
+
+    text-shadow: none !important;
+}
+
+
+/* Queue items */
+._playQueueItems_84488b2
+._container_aab70e3,
+
+._playQueueItems_84488b2
+._wrapper_940fda7 {
+
+    background: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* Queue hover */
+._playQueueItems_84488b2
+._container_aab70e3:hover,
+
+._playQueueItems_84488b2
+._wrapper_940fda7:hover {
+
+    background: var(--solo-hover-soft) !important;
+    background-image: none !important;
+
+    box-shadow: none !important;
+}
+
+
+/* NO underline / colour inversion */
+._playQueueItems_84488b2
+._container_aab70e3:hover *,
+
+._playQueueItems_84488b2
+._wrapper_940fda7:hover * {
+
+    text-decoration: none !important;
+}
+
+
+/* Queue artwork */
+._playQueueWrapper_cbf5aaa .css-u7yq00,
+._playQueueWrapper_cbf5aaa .css-1ug9uri,
+._playQueueWrapper_cbf5aaa
+._nowPlayingIconContainer_615aacb {
+
+    background: var(--solo-hover) !important;
+    background-image: none !important;
+
+    box-shadow: none !important;
+    filter: none !important;
+
+    animation: none !important;
+}
+
+
+/* Queue action icons */
+._playQueueItems_84488b2 button {
+
+    background: transparent !important;
+    background-image: none !important;
+
+    box-shadow: none !important;
+}
+
+._playQueueItems_84488b2 button:hover {
+
+    background: transparent !important;
+
+    filter: brightness(1.25) !important;
+}
+
+
+/* Queue header */
+._container_b3e8f28 h1,
+._container_b3e8f28 h2,
+._container_b3e8f28 h3 {
+
+    color: var(--solo-text) !important;
+}
+
+
+/* =========================================================
+   22. DIALOGS / MODALS
+   Future-proof the same design language.
+   ========================================================= */
+
+.ReactModal__Content.ReactModal__Content--after-open,
+._dialog_148b5df {
+
+    background: var(--solo-surface-raised) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+
+    box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.50) !important;
+
+    backdrop-filter: none !important;
+
+    --wave-color-text-main: var(--solo-text) !important;
+    --market-core-text-10-color: var(--solo-text) !important;
+    --wave-color-solid-contrast-fill: var(--solo-text) !important;
+}
+
+
+/* Modal input surfaces */
+._dialog_148b5df input,
+._dialog_148b5df textarea,
+._dialog_148b5df ._inputContainer_c4d431e {
+
+    background: var(--solo-hover) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   23. GENERAL INTERACTION RULE
+   ========================================================= */
+
+/*
+   No global bright button hover.
+   Individual components above decide their hover style.
+*/
+
+button {
+    transition:
+        background-color 120ms ease,
+        color 120ms ease,
+        filter 120ms ease !important;
 }
