@@ -513,3 +513,291 @@ div._searchField_b2eb7f7:focus-within{
   box-shadow:none!important;
   backdrop-filter:none!important;
 }
+
+
+/* =========================================================
+   SOLO v2.2 — BASE-GEOMETRY RESTORATION
+   =========================================================
+   Policy:
+   - Base owns geometry.
+   - Solo owns palette / decoration.
+   - No generic hashed substring selectors for sizing.
+   ========================================================= */
+
+/* Main cards: restore Base's own geometry instead of imposing a
+   synthetic 40px title reservation. */
+._card_38c6c04{
+    height:auto!important;
+    min-height:0!important;
+}
+._card_38c6c04 ._titleText_9e9bb51._medium20_1lyag_192._marketText_1lyag_1{
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    line-height:normal!important;
+    display:-webkit-box!important;
+    -webkit-line-clamp:2!important;
+    -webkit-box-orient:vertical!important;
+    overflow:hidden!important;
+}
+
+/* Collection grids: do not touch ReactVirtualized geometry.
+   Kill only the visible decoration that Base adds. */
+.is-intersecting._occlusion_de6b9d3._defaultStyles_a1b9da9.ALBUM_ITEMS.tidal-ui__occlusion,
+.is-intersecting._occlusion_de6b9d3._defaultStyles_a1b9da9.TRACK_LIST.tidal-ui__occlusion,
+.is-intersecting._occlusion_de6b9d3._defaultStyles_a1b9da9.ALBUM_ITEMS.tidal-ui__occlusion > div > div > div > .ReactVirtualized__List.ReactVirtualized__Grid,
+._moduleContainer_c7ad3d9{
+    border-color:transparent!important;
+    border-width:0!important;
+    border-style:solid!important;
+    box-shadow:none!important;
+}
+
+/* Keep Base padding/transforms/margins intact. */
+._moduleContainer_c7ad3d9,
+.is-intersecting._occlusion_de6b9d3._defaultStyles_a1b9da9.TRACK_LIST.tidal-ui__occlusion,
+.is-intersecting._occlusion_de6b9d3._defaultStyles_a1b9da9.ALBUM_ITEMS.tidal-ui__occlusion{
+    background-color:transparent!important;
+    background-image:none!important;
+}
+
+/* Collection card artwork: never let hover overlay replace/hide image. */
+._cellContainer_19b23ad img,
+._cellContainer_19b23ad picture,
+._cellContainer_19b23ad picture img{
+    opacity:1!important;
+    visibility:visible!important;
+}
+._cellContainer_19b23ad:hover img,
+._cellContainer_19b23ad:hover picture img{
+    opacity:1!important;
+    visibility:visible!important;
+    filter:brightness(.78)!important;
+}
+._cellContainer_19b23ad:hover [class*="_overlay_"]{
+    background:rgba(0,0,0,.16)!important;
+    background-image:none!important;
+}
+
+/* Selected Music rows: never inherit Milky Way's near-black --vv. */
+._tableRow_299a426._tableRowSelected_fb04c2a,
+._rowContainer_ebb4cfc._selected_8f556cc{
+    --vv:rgba(255,255,255,.92)!important;
+    --trackseltxt:rgba(255,255,255,.92)!important;
+}
+._tableRow_299a426._tableRowSelected_fb04c2a a,
+._rowContainer_ebb4cfc._selected_8f556cc a{
+    color:rgba(255,255,255,.92)!important;
+}
+._tableRow_299a426._tableRowSelected_fb04c2a [class*="_artist"],
+._tableRow_299a426._tableRowSelected_fb04c2a [class*="_artist"] a,
+._rowContainer_ebb4cfc._selected_8f556cc [class*="_artist"],
+._rowContainer_ebb4cfc._selected_8f556cc [class*="_artist"] a{
+    color:rgba(255,255,255,.68)!important;
+}
+
+/* Explore: #09090b all the way through the right paging controls. */
+[data-test-page-name="explore"] ._button_f3463fe,
+[data-test-page-name="explore"] ._buttonContainer_a07db07,
+[data-test-page-name="explore"] ._buttonContainer_a07db07 > *,
+[data-test-page-name="explore"] .css-1xlzpjd,
+[data-test-page-name="explore"] .css-8iwxr,
+[data-test-page-name="explore"] .css-8iwxr > *{
+    background:#09090b!important;
+    background-color:#09090b!important;
+    background-image:none!important;
+    border:0!important;
+    outline:0!important;
+    box-shadow:none!important;
+}
+[data-test-page-name="explore"] ._button_f3463fe:hover,
+[data-test-page-name="explore"] ._buttonContainer_a07db07 button:hover,
+[data-test-page-name="explore"] .css-1xlzpjd:hover{
+    background:#1e1e22!important;
+}
+[data-test-page-name="explore"] ._button_f3463fe svg,
+[data-test-page-name="explore"] ._button_f3463fe svg use,
+[data-test-page-name="explore"] ._buttonContainer_a07db07 svg,
+[data-test-page-name="explore"] ._buttonContainer_a07db07 svg use{
+    color:rgba(255,255,255,.92)!important;
+    fill:currentColor!important;
+}
+
+/* Search: Base's transform is structural and must survive.
+   Only repaint the actual field and popover. */
+._container_cb5cbe4,
+._searchFieldWithPopover_267e090,
+._container_5116191._searchFieldWithPopover_267e090{
+    background:transparent!important;
+    background-image:none!important;
+    border:0!important;
+    box-shadow:none!important;
+}
+:is(._container_cb5cbe4 ._searchFieldWithPopover_267e090) .searchFieldWithinSearchFieldWithPopover,
+div._searchField_b2eb7f7{
+    background:#1e1e22!important;
+    background-color:#1e1e22!important;
+    background-image:none!important;
+    border:0!important;
+    border-radius:999px!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+}
+div._searchField_b2eb7f7 input,
+:is(div._searchField_b2eb7f7 input)::placeholder,
+:is(div._searchField_b2eb7f7 input):hover,
+div._searchField_b2eb7f7 > svg,
+div._searchField_b2eb7f7 > button svg{
+    color:rgba(255,255,255,.88)!important;
+    -webkit-text-fill-color:currentColor!important;
+}
+._container_f1be359{
+    /* retain Base: translateX(calc(var(--playQueueWidth) * -1)) */
+    background:#111114!important;
+    background-color:#111114!important;
+    background-image:none!important;
+    border:0!important;
+    box-shadow:0 12px 32px rgba(0,0,0,.45)!important;
+    backdrop-filter:none!important;
+}
+[class="_container_79ca9c5"]{
+    background:#111114!important;
+    background-color:#111114!important;
+    background-image:none!important;
+    color:rgba(255,255,255,.92)!important;
+    border:0!important;
+    box-shadow:0 12px 32px rgba(0,0,0,.45)!important;
+}
+
+/* Settings: #09090b surfaces, but make interactive controls readable. */
+[data-test="settings-page"] ._container_b4f1e20._fillDark_a1e5896,
+[data-test="settings-page"] ._container_b4f1e20._noFill_8429ea8,
+[data-test="settings-page"] ._container_9a0abb9{
+    background:#09090b!important;
+    background-image:none!important;
+    border-color:transparent!important;
+    box-shadow:none!important;
+}
+[data-test="settings-page"] ._select_ef84104,
+[data-test="settings-page"] div._container_9a0abb9 > ._select_ef84104{
+    background:#09090b!important;
+    background-image:none!important;
+    color:rgba(255,255,255,.92)!important;
+    border:0!important;
+    border-radius:6px!important;
+    box-shadow:none!important;
+}
+[data-test="settings-page"] ._unchecked_a1bcc16._label_12bd8cc{
+    background:#45454d!important;
+}
+[data-test="settings-page"] ._checked_3422d33._label_12bd8cc{
+    background:#8f8f9b!important;
+}
+[data-test="settings-page"] ._label_12bd8cc:after{
+    background:#f4f4f6!important;
+}
+
+/* Quality badge: transparent in every player state. */
+._player_8c80ae6 ._gradientMax_9111fba,
+._player_8c80ae6 ._gradientHigh_87f2c3b,
+._player_8c80ae6 ._gradientLow_3f9bc0d,
+._player_8c80ae6 ._badge_7b2911e,
+._player_8c80ae6 ._badge_7b2911e:hover{
+    background:transparent!important;
+    background-color:transparent!important;
+    background-image:none!important;
+    border:0!important;
+    outline:0!important;
+    box-shadow:none!important;
+    animation:none!important;
+}
+
+/* Context menus */
+._container_d3060bb._visible_4bed23e,
+._contextMenu_8606b2d,
+._subMenu_706d970,
+._submenu_1951fe4{
+    background:#111114!important;
+    background-image:none!important;
+    border:0!important;
+    box-shadow:0 8px 24px rgba(0,0,0,.45)!important;
+}
+
+/* Luna theme manager:
+   Keep its native row structure. The previous guessed grid was destructive.
+   We only impose shrink behavior on textual children and protect controls. */
+.css-1m2j012,
+.css-1v59atl,
+.css-1m2uggs,
+.css-1l78aht{
+    display:flex!important;
+    align-items:center!important;
+    min-width:0!important;
+}
+.css-1m2j012 > *,
+.css-1v59atl > *,
+.css-1m2uggs > *,
+.css-1l78aht > *{
+    min-width:0;
+}
+.css-1m2j012 button,.css-1m2j012 .MuiSwitch-root,
+.css-1v59atl button,.css-1v59atl .MuiSwitch-root,
+.css-1m2uggs button,.css-1m2uggs .MuiSwitch-root,
+.css-1l78aht button,.css-1l78aht .MuiSwitch-root{
+    flex:0 0 auto!important;
+    align-self:center!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+    transform:none!important;
+}
+.css-1m2j012 a[href^="http"],.css-1m2j012 p,
+.css-1v59atl a[href^="http"],.css-1v59atl p,
+.css-1m2uggs a[href^="http"],.css-1m2uggs p,
+.css-1l78aht a[href^="http"],.css-1l78aht p{
+    overflow-wrap:anywhere!important;
+    word-break:break-word!important;
+}
+
+/* Luna switch contrast */
+.css-1y0ghtc + .MuiSwitch-track{
+    background-color:#45454d!important;
+    opacity:1!important;
+}
+.css-1y0ghtc.Mui-checked + .MuiSwitch-track{
+    background-color:#92929e!important;
+    opacity:1!important;
+}
+
+/* Sidebar scroll fix — preserve known-good behavior. */
+#sidebar > div._container_4454af7 > div > div{
+    margin-bottom:0!important;
+}
+._fixedNavigation_00842ee{
+    position:relative!important;
+    z-index:auto!important;
+}
+._sectionHeader_ca54638,
+._sectionHeader_f4932eb{
+    position:static!important;
+    top:auto!important;
+    z-index:auto!important;
+    background:transparent!important;
+}
+
+/* Lyrics/footer: visual-only cleanup; preserve Base dimensions. */
+#nowPlaying ._wrapper_512d5f4{
+    background:transparent!important;
+    background-image:none!important;
+    border:0!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+}
+._player_8c80ae6 ._trackContent_7b758a9,
+._player_8c80ae6 ._utilityButtons_4d7aaf9,
+.upnext-container,
+.upnext-container:hover{
+    background:transparent!important;
+    background-image:none!important;
+    border:0!important;
+    box-shadow:none!important;
+}
