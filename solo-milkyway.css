@@ -1,6 +1,17 @@
 /* =========================================================
    Solo's Cotton Candy Nights cleanup
+   Unified dark design: #09090b
    ========================================================= */
+
+:root {
+    --solo-bg: #09090b;
+    --solo-hover: #1e1e22;
+    --solo-hover-soft: rgba(255, 255, 255, 0.08);
+    --solo-border: rgba(255, 255, 255, 0.08);
+
+    --solo-text: rgba(255, 255, 255, 0.88);
+    --solo-text-soft: rgba(255, 255, 255, 0.68);
+}
 
 
 /* =========================================================
@@ -13,17 +24,22 @@
     box-shadow: none !important;
 }
 
+
 /* Six large Home shortcuts */
 ._shortcutItem_6c8e7b4 {
-    background: rgb(15, 15, 20) !important;
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
     background-image: none !important;
+
     box-shadow: none !important;
     filter: none !important;
 }
 
 ._shortcutItem_6c8e7b4:hover {
-    background: rgb(38, 38, 43) !important;
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
     background-image: none !important;
+
     box-shadow: none !important;
     filter: none !important;
 }
@@ -31,25 +47,38 @@
 
 /* =========================================================
    2. MAIN CARDS
-   Dark cards, no borders, normal darkening on hover.
+   Unified height, no borders, dark hover.
    ========================================================= */
 
 ._card_38c6c04 {
+    background-color: var(--solo-bg) !important;
+
     border: none !important;
     border-width: 0 !important;
     border-color: transparent !important;
+
     box-shadow: none !important;
 }
 
-/* Keep artwork normal when idle */
+
+/* Reserve room for TWO title lines.
+   This keeps every card in a horizontal carousel aligned. */
+._card_38c6c04 ._title_7c8d96a,
+._card_38c6c04 [class*="_title_"] {
+    min-height: 2.6em;
+}
+
+
+/* Artwork normal when idle */
 ._card_38c6c04 ._imageWrapper_aecc0c5 img {
     filter: none !important;
 }
 
-/* Hover:
-   restrained grey card background, no glowing border */
+
+/* Hover */
 ._card_38c6c04:hover {
-    background: rgb(30, 30, 34) !important;
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
     background-image: none !important;
 
     border: none !important;
@@ -63,8 +92,8 @@
     color: inherit !important;
 }
 
-/* Cotton Candy Nights normally adds a colourful/light
-   overlay over the artwork. Replace it with normal dimming. */
+
+/* Replace bright artwork effect with dimming */
 ._card_38c6c04:hover ._overlay_91ba65b {
     background: rgba(0, 0, 0, 0.22) !important;
     background-image: none !important;
@@ -74,10 +103,8 @@
     animation: none !important;
 
     border: none !important;
-    border-color: transparent !important;
 }
 
-/* Don't brighten / colour-shift the actual image */
 ._card_38c6c04:hover ._imageWrapper_aecc0c5 img {
     filter: brightness(0.78) !important;
     transform: scale(1.02) !important;
@@ -87,20 +114,19 @@
         transform 350ms ease !important;
 }
 
-/* Preserve normal text colour */
+
+/* Never invert card text */
 ._card_38c6c04:hover ._marketText_1lyag_1,
 ._card_38c6c04:hover ._link_6a45a19,
 ._card_38c6c04:hover span,
 ._card_38c6c04:hover p {
-    color: rgba(255, 255, 255, 0.88) !important;
+    color: var(--solo-text) !important;
 }
 
-/* Don't invert badges */
 ._card_38c6c04:hover ._badge_57d1ccb {
     filter: none !important;
 }
 
-/* Card icons */
 ._card_38c6c04:hover ._icon_77f3f89,
 ._card_38c6c04:hover ._icon_77f3f89 > use,
 ._card_38c6c04:hover ._marketIcon_1664p_1,
@@ -112,23 +138,24 @@
 
 /* =========================================================
    3. HORIZONTAL CARDS
-   Recently played etc.
    ========================================================= */
 
 ._item_235a32d {
+    background-color: var(--solo-bg) !important;
+
     border: none !important;
     border-width: 0 !important;
     border-color: transparent !important;
+
     box-shadow: none !important;
 }
 
 ._item_235a32d:hover {
-    background: rgb(30, 30, 34) !important;
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
     background-image: none !important;
 
     border: none !important;
-    border-width: 0 !important;
-    border-color: transparent !important;
 
     box-shadow: none !important;
     filter: none !important;
@@ -142,18 +169,12 @@
 ._item_235a32d:hover span,
 ._item_235a32d:hover p,
 ._item_235a32d:hover a {
-    color: rgba(255, 255, 255, 0.88) !important;
-}
-
-._item_235a32d:hover ._icon_77f3f89,
-._item_235a32d:hover ._icon_77f3f89 > use {
-    color: rgba(255, 255, 255, 0.82) !important;
-    fill: rgba(255, 255, 255, 0.82) !important;
+    color: var(--solo-text) !important;
 }
 
 
 /* =========================================================
-   4. LEFT SIDEBAR NAVIGATION
+   4. LEFT SIDEBAR
    ========================================================= */
 
 ._navigationItem_4e9deae {
@@ -171,14 +192,14 @@
 
 ._navigationItem_4e9deae ._icon_77f3f89,
 ._navigationItem_4e9deae ._icon_b8b52c1 {
-    fill: rgba(255, 255, 255, 0.68) !important;
-    color: rgba(255, 255, 255, 0.68) !important;
+    fill: var(--solo-text-soft) !important;
+    color: var(--solo-text-soft) !important;
 }
 
 
 /* Hover */
 ._navigationItem_4e9deae:hover {
-    background: rgba(255, 255, 255, 0.10) !important;
+    background: var(--solo-hover-soft) !important;
     background-image: none !important;
 
     color: rgba(255, 255, 255, 0.92) !important;
@@ -189,12 +210,6 @@
 
     filter: none !important;
     animation: none !important;
-}
-
-._navigationItem_4e9deae:hover ._icon_77f3f89,
-._navigationItem_4e9deae:hover ._icon_b8b52c1 {
-    fill: rgba(255, 255, 255, 0.92) !important;
-    color: rgba(255, 255, 255, 0.92) !important;
 }
 
 
@@ -213,19 +228,13 @@
     animation: none !important;
 }
 
-._navigationItem_4e9deae._selected_29027d1 ._icon_77f3f89,
-._navigationItem_4e9deae._selected_29027d1 ._icon_b8b52c1 {
-    fill: rgba(255, 255, 255, 0.95) !important;
-    color: rgba(255, 255, 255, 0.95) !important;
-}
-
 ._navigationItem_4e9deae._selected_29027d1:hover {
-    background: rgba(255, 255, 255, 0.10) !important;
+    background: var(--solo-hover-soft) !important;
 }
 
 
 /* =========================================================
-   5. SIDEBAR PLAYLISTS / FOLDERS
+   5. SIDEBAR PLAYLISTS
    ========================================================= */
 
 ._contentItem_684cbbe,
@@ -255,7 +264,6 @@
    6. SIDEBAR SCROLL FIX
    ========================================================= */
 
-/* Undo the theme's -140px overlap hack */
 #sidebar > div._container_4454af7 > div > div {
     margin-bottom: 0 !important;
 }
@@ -265,7 +273,6 @@
     z-index: auto !important;
 }
 
-/* All playlists should scroll normally */
 ._sectionHeader_ca54638,
 ._sectionHeader_f4932eb {
     position: static !important;
@@ -276,8 +283,174 @@
 
 
 /* =========================================================
-   7. LYRICS
-   Remove glass box.
+   7. EXPLORE
+   Restore readable buttons and unify them.
+   ========================================================= */
+
+[data-test-page-name="explore"] button,
+[data-test-page-name="explore"] [role="button"] {
+    color: var(--solo-text) !important;
+
+    background: rgba(255, 255, 255, 0.10) !important;
+    background-color: rgba(255, 255, 255, 0.10) !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+
+    filter: none !important;
+    animation: none !important;
+}
+
+
+/* Explore text that Cotton Candy Nights turns into --vv */
+[data-test-page-name="explore"] ._text_d2b2b39,
+[data-test-page-name="explore"] button span,
+[data-test-page-name="explore"] [role="button"] span {
+    color: var(--solo-text) !important;
+    -webkit-text-fill-color: var(--solo-text) !important;
+}
+
+
+/* Explore icons */
+[data-test-page-name="explore"] button svg,
+[data-test-page-name="explore"] [role="button"] svg {
+    color: var(--solo-text) !important;
+    fill: currentColor !important;
+}
+
+
+/* Consistent hover */
+[data-test-page-name="explore"] button:hover,
+[data-test-page-name="explore"] [role="button"]:hover {
+    background: rgba(255, 255, 255, 0.16) !important;
+    background-image: none !important;
+
+    color: white !important;
+
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+
+/* =========================================================
+   8. FEED
+   Remove giant grey Cotton Candy Nights panel.
+   ========================================================= */
+
+[data-test-page-name="feed"]
+[class="_defaultStyles_a1b9da9 _container_d43f21d"] {
+
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    /* Theme added 1em just for the grey box */
+    padding: 0 !important;
+
+    border-radius: 0 !important;
+
+    --wave-color-text-main: rgba(255, 255, 255, 0.88) !important;
+    --market-core-text-10-color: rgba(255, 255, 255, 0.88) !important;
+}
+
+
+/* Feed entries get our normal dark-card treatment */
+[data-test-page-name="feed"] [class*="_item_"],
+[data-test-page-name="feed"] [class*="_card_"] {
+    background-color: var(--solo-bg);
+}
+
+
+/* =========================================================
+   9. SETTINGS
+   Undo Cotton Candy Nights light surfaces.
+   ========================================================= */
+
+[data-test="settings-page"] {
+    --wave-color-text-main: rgba(255, 255, 255, 0.88) !important;
+    --market-core-text-10-color: rgba(255, 255, 255, 0.88) !important;
+
+    --wave-color-solid-contrast-fill: rgba(255, 255, 255, 0.88) !important;
+    --wave-color-solid-contrast-darkest: rgba(255, 255, 255, 0.88) !important;
+}
+
+
+/* Main settings groups */
+[data-test="settings-page"] ._container_b4f1e20._fillDark_a1e5896,
+[data-test="settings-page"] ._container_b4f1e20._noFill_8429ea8 {
+
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* Inner settings surfaces */
+[data-test="settings-page"]
+._container_b4f1e20._fillDark_a1e5896 > div,
+[data-test="settings-page"] ._container_9a0abb9 {
+
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* Settings text */
+[data-test="settings-page"] span,
+[data-test="settings-page"] p,
+[data-test="settings-page"] label {
+    color: var(--solo-text) !important;
+}
+
+
+/* Select boxes */
+[data-test="settings-page"] ._select_ef84104 {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* Checked / unchecked controls */
+[data-test="settings-page"] ._checked_3422d33._label_12bd8cc,
+[data-test="settings-page"] ._unchecked_a1bcc16._label_12bd8cc {
+    background-color: var(--solo-hover) !important;
+    color: var(--solo-text) !important;
+}
+
+
+/* Settings buttons */
+[data-test="settings-page"] button {
+    box-shadow: none !important;
+}
+
+[data-test="settings-page"] button:hover {
+    background-color: var(--solo-hover) !important;
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   10. LYRICS
    ========================================================= */
 
 #nowPlaying [class="_wrapper_512d5f4"] {
@@ -286,7 +459,6 @@
     background-image: none !important;
 
     border: none !important;
-    border-color: transparent !important;
     box-shadow: none !important;
 
     backdrop-filter: none !important;
@@ -296,7 +468,8 @@
     padding-left: 0 !important;
 }
 
-#nowPlaying [class="_panelWrapper_b31994f _panelWrapperActive_1904d94"] {
+#nowPlaying
+[class="_panelWrapper_b31994f _panelWrapperActive_1904d94"] {
     background: transparent !important;
     background-image: none !important;
 
@@ -308,7 +481,7 @@
 
 
 /* =========================================================
-   8. PROFILE / CONTEXT MENU
+   11. PROFILE / CONTEXT MENU
    ========================================================= */
 
 ._container_d3060bb._visible_4bed23e,
@@ -316,19 +489,16 @@
 ._subMenu_706d970,
 ._submenu_1951fe4 {
     background: rgb(28, 28, 31) !important;
-    background-color: rgb(28, 28, 31) !important;
     background-image: none !important;
 
-    color: rgba(255, 255, 255, 0.88) !important;
+    color: var(--solo-text) !important;
 
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid var(--solo-border) !important;
     border-radius: 8px !important;
 
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
 
     backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-
     animation: none !important;
 
     --wave-color-opacity-contrast-fill-thick:
@@ -339,33 +509,19 @@
 }
 
 
-/* Menu text */
-._contextMenu_8606b2d ._actionTextInner_a14f37c,
-._container_d3060bb._visible_4bed23e ._actionTextInner_a14f37c {
-    color: rgba(255, 255, 255, 0.88) !important;
-}
-
-
-/* Menu icons */
-._contextMenu_8606b2d ._icon_77f3f89 > use,
-._container_d3060bb._visible_4bed23e ._icon_77f3f89 > use {
-    fill: rgba(255, 255, 255, 0.78) !important;
-}
-
-
 /* Ordinary menu entries */
 ._actionItem_e0c1e65 {
     background: transparent !important;
     background-image: none !important;
 
-    color: rgba(255, 255, 255, 0.88) !important;
+    color: var(--solo-text) !important;
 
     border-radius: 6px !important;
     box-shadow: none !important;
 }
 
 ._actionItem_e0c1e65:hover {
-    background: rgba(255, 255, 255, 0.10) !important;
+    background: var(--solo-hover-soft) !important;
     background-image: none !important;
 
     color: white !important;
@@ -377,24 +533,23 @@
 
 
 /* =========================================================
-   9. LOG OUT
-   Make it a completely ordinary context-menu item.
+   12. LOG OUT
    ========================================================= */
 
-._contextMenu_8606b2d ._logout_d89cefd._actionItem_e0c1e65,
+._contextMenu_8606b2d
+._logout_d89cefd._actionItem_e0c1e65,
+
 ._container_d3060bb._visible_4bed23e
 ._logout_d89cefd._actionItem_e0c1e65 {
 
     background: transparent !important;
-    background-color: transparent !important;
     background-image: none !important;
 
-    /* Kill Cotton Candy Nights' special Logout geometry */
     margin-left: 0 !important;
     margin-right: 0 !important;
+
     transform: none !important;
 
-    /* Match the horizontal inset of normal menu entries */
     padding-left: 16px !important;
     padding-right: 16px !important;
 
@@ -403,26 +558,20 @@
     border-radius: 6px !important;
     box-shadow: none !important;
 
-    color: rgba(255, 255, 255, 0.88) !important;
+    color: var(--solo-text) !important;
 }
 
-/* Do NOT add another offset to the inner text */
 ._logout_d89cefd._actionItem_e0c1e65
 ._actionTextInner_a14f37c {
+
     padding-left: 0 !important;
     margin-left: 0 !important;
 
-    color: rgba(255, 255, 255, 0.88) !important;
+    color: var(--solo-text) !important;
 }
 
-._logout_d89cefd._actionItem_e0c1e65 span {
-    color: rgba(255, 255, 255, 0.88) !important;
-}
-
-
-/* Logout hover = normal menu hover */
 ._logout_d89cefd._actionItem_e0c1e65:hover {
-    background: rgba(255, 255, 255, 0.10) !important;
+    background: var(--solo-hover-soft) !important;
     background-image: none !important;
 
     color: white !important;
@@ -430,49 +579,23 @@
     box-shadow: none !important;
     filter: none !important;
     animation: none !important;
-
-    transition: background-color 120ms ease !important;
-}
-
-._logout_d89cefd._actionItem_e0c1e65:hover span,
-._logout_d89cefd._actionItem_e0c1e65:hover
-._actionTextInner_a14f37c {
-    color: white !important;
 }
 
 
 /* =========================================================
-   10. FOOTER PLAYER
-   Remove the separate "boxes" inside the player.
-   Let them visually inherit the footer itself.
+   13. FOOTER PLAYER
+   Remove inner capsules.
    ========================================================= */
 
-/* Left track-information rectangle */
-._player_8c80ae6 ._trackContent_7b758a9 {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-
-    border: none !important;
-    border-width: 0 !important;
-    border-color: transparent !important;
-
-    box-shadow: none !important;
-
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-
-/* Right utility-controls rectangle */
+._player_8c80ae6 ._trackContent_7b758a9,
 ._player_8c80ae6 ._utilityButtons_4d7aaf9 {
+
     background: transparent !important;
     background-color: transparent !important;
     background-image: none !important;
 
     border: none !important;
     border-width: 0 !important;
-    border-color: transparent !important;
 
     box-shadow: none !important;
 
@@ -481,21 +604,17 @@
 }
 
 
-/* Individual utility buttons should also have no permanent
-   little boxes of their own. */
+/* Utility buttons */
 ._player_8c80ae6 ._utilityButtons_4d7aaf9 button {
     background: transparent !important;
-    background-color: transparent !important;
     background-image: none !important;
 
     border: none !important;
     box-shadow: none !important;
 }
 
-
-/* Keep a subtle hover indication */
 ._player_8c80ae6 ._utilityButtons_4d7aaf9 button:hover {
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: var(--solo-hover-soft) !important;
     background-image: none !important;
 
     box-shadow: none !important;
@@ -503,25 +622,112 @@
 }
 
 
-/* Track controls such as favourite / menu:
-   no decorative boxes or glow */
-._player_8c80ae6 ._trackContent_7b758a9 button {
-    box-shadow: none !important;
-}
-
-
-/* Artwork itself should remain clean.
-   Cotton Candy Nights normally adds a bright outline
-   when hovering the current artwork. */
+/* Artwork */
 ._player_8c80ae6 ._artworkContainer_3cdbf46:hover {
     outline: none !important;
     box-shadow: none !important;
 }
 
-/* Keep the theme's useful "hover artwork = darker"
-   behaviour, just without the outline */
 ._player_8c80ae6
 ._artworkContainer_3cdbf46:hover
 ._artwork_633cf14 {
+
     filter: brightness(0.45) saturate(1.05) !important;
+}
+
+
+/* =========================================================
+   14. QUALITY / BITRATE BADGE
+   Make it part of the player instead of a capsule.
+   ========================================================= */
+
+._player_8c80ae6 ._gradientMax_9111fba,
+._player_8c80ae6 ._gradientHigh_87f2c3b,
+._player_8c80ae6 ._gradientLow_3f9bc0d {
+
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    animation: none !important;
+    filter: none !important;
+}
+
+
+/* Badge wrapper */
+._player_8c80ae6 ._badge_7b2911e {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    animation: none !important;
+}
+
+
+/* No glow on hover */
+._player_8c80ae6 ._badge_7b2911e:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+
+    filter: none !important;
+    animation: none !important;
+}
+
+
+/* =========================================================
+   15. UPNEXT PLUGIN
+   The plugin supplies its own .upnext-* CSS.
+   Integrate it into our footer.
+   ========================================================= */
+
+.upnext-container {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    border-width: 0 !important;
+
+    box-shadow: none !important;
+
+    /* Keep its useful spacing/structure */
+    border-radius: 0 !important;
+}
+
+
+/* Same subtle interaction language as everything else */
+.upnext-container:hover {
+    background: var(--solo-hover-soft) !important;
+    background-image: none !important;
+
+    box-shadow: none !important;
+}
+
+
+/* Cover shouldn't have another frame */
+.upnext-cover {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+/* UpNext text */
+.upnext-title {
+    color: var(--solo-text) !important;
+}
+
+.upnext-artist,
+.upnext-label {
+    color: var(--solo-text-soft) !important;
 }
