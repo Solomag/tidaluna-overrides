@@ -1,3 +1,6 @@
+body {
+    filter: invert(1) !important;
+}
 /* =========================================
    Solo's Cotton Candy Nights overrides
    ========================================= */
