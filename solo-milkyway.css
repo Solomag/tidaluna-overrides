@@ -1465,6 +1465,495 @@ span._highlight_a043e62 {
     border-radius: 3px !important;
 }
 
+/* =========================================================
+   SOLO DARK — UI CLEANUP PASS
+   2026-08-28
+   ========================================================= */
+
+
+/* =========================================================
+   1. CARD HEIGHT NORMALIZATION
+
+   Previous title-only reservation wasn't enough because
+   card height is still content-driven.
+
+   Force the card itself to stretch to the height of its
+   carousel/grid cell.
+   ========================================================= */
+
+._card_38c6c04 {
+    height: 100% !important;
+    min-height: 100% !important;
+}
+
+/* Keep exactly two title lines reserved */
+._card_38c6c04 [class*="_title_"] {
+    min-height: 40px !important;
+    height: 40px !important;
+    max-height: 40px !important;
+
+    line-height: 20px !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   2. EXPLORE
+
+   Unified Solo design:
+   normal control = #09090b
+   hover = #1e1e22
+   ========================================================= */
+
+/* Category / genre / decade buttons */
+[data-test-page-name="explore"] button:not(._viewAllButton_4b4f90c) {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    filter: none !important;
+    animation: none !important;
+}
+
+[data-test-page-name="explore"] button:not(._viewAllButton_4b4f90c):hover {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+    background-image: none !important;
+
+    color: white !important;
+
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+/* Text */
+[data-test-page-name="explore"] button span,
+[data-test-page-name="explore"] ._text_d2b2b39 {
+    color: inherit !important;
+    -webkit-text-fill-color: currentColor !important;
+}
+
+/* Icons */
+[data-test-page-name="explore"] button svg,
+[data-test-page-name="explore"] button svg use {
+    color: currentColor !important;
+    fill: currentColor !important;
+}
+
+
+/* =========================================================
+   3. VIEW ALL
+   ========================================================= */
+
+._viewAllButton_4b4f90c > ._marketText_1lyag_1,
+._viewAllButton_4b4f90c > ._semibold20_1lyag_246._marketText_1lyag_1 {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    box-shadow: none !important;
+
+    filter: none !important;
+    animation: none !important;
+}
+
+._viewAllButton_4b4f90c > ._marketText_1lyag_1:hover {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+
+    color: white !important;
+}
+
+
+/* =========================================================
+   4. CAROUSEL ARROWS
+
+   Base currently explicitly makes these bright.
+   ========================================================= */
+
+._buttonContainer_a07db07 button,
+.css-1xlzpjd,
+.css-8iwxr.tidal-ui__spacer > .css-1xlzpjd.tidal-ui__button {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    backdrop-filter: none !important;
+
+    filter: none !important;
+    animation: none !important;
+}
+
+._buttonContainer_a07db07 button:hover,
+.css-1xlzpjd:hover,
+.css-8iwxr.tidal-ui__spacer > .css-1xlzpjd.tidal-ui__button:hover {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+    background-image: none !important;
+
+    color: white !important;
+
+    box-shadow: none !important;
+    filter: none !important;
+    animation: none !important;
+}
+
+._buttonContainer_a07db07 svg,
+._buttonContainer_a07db07 svg use,
+.css-1xlzpjd svg,
+.css-1xlzpjd svg use,
+._scrollingIcon_6596d82._icon_77f3f89 > use,
+._icon_41aad12 {
+    color: currentColor !important;
+    fill: currentColor !important;
+}
+
+
+/* =========================================================
+   5. COLLECTION GRID
+   Playlists / Albums / Tracks / Videos / Profiles
+
+   Base currently uses:
+       background rgba(255,255,255,.2)
+
+   Replace with same visual language as sidebar.
+   ========================================================= */
+
+[data-test-page-name="my-collection"] ._cellContainer_19b23ad,
+[data-track--page-id="mycollection_playlists"] ._cellContainer_19b23ad {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    border-radius: 8px !important;
+
+    filter: none !important;
+}
+
+[data-test-page-name="my-collection"] ._cellContainer_19b23ad:hover,
+[data-track--page-id="mycollection_playlists"] ._cellContainer_19b23ad:hover {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+
+    box-shadow: none !important;
+}
+
+
+/* Playlist folder tile:
+   kill the giant light-grey folder background */
+._container_7e465e2 {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+div._cellCoverContainer_b517623 > a > div > svg,
+div._cellCoverContainer_b517623 > a > div > svg > use {
+    color: var(--solo-text-secondary) !important;
+    fill: var(--solo-text-secondary) !important;
+}
+
+
+/* Generic collection artwork wrappers */
+[data-test-page-name="my-collection"] .css-ohr3gy,
+[data-test-page-name="my-collection"] .css-17bbmu3,
+[data-track--page-id="mycollection_playlists"] .css-ohr3gy,
+[data-track--page-id="mycollection_playlists"] .css-17bbmu3 {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   6. MIXES & RADIO / GENERIC CARD CONTAINERS
+
+   Kill the large outline surrounding the grid.
+   ========================================================= */
+
+[data-test-page-name="mixes"] [class*="_items_"],
+[data-track--page-id*="mix"] [class*="_items_"] {
+    border-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+/* The cards themselves should use our surface */
+[data-test-page-name="mixes"] ._card_38c6c04,
+[data-track--page-id*="mix"] ._card_38c6c04 {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Don't wash out mix artwork */
+[data-test-page-name="mixes"] ._imageWrapper_aecc0c5 img,
+[data-track--page-id*="mix"] ._imageWrapper_aecc0c5 img {
+    filter: none !important;
+    opacity: 1 !important;
+}
+
+[data-test-page-name="mixes"] ._card_38c6c04:hover ._imageWrapper_aecc0c5 img,
+[data-track--page-id*="mix"] ._card_38c6c04:hover ._imageWrapper_aecc0c5 img {
+    filter: brightness(.78) !important;
+}
+
+
+/* =========================================================
+   7. SEARCH FIELD
+   ========================================================= */
+
+._container_cb5cbe4 ._searchFieldWithPopover_267e090,
+._container_cb5cbe4 .searchFieldWithinSearchFieldWithPopover,
+._searchField_b2eb7f7,
+._searchField_b2eb7f7:focus-within {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    color: var(--solo-text) !important;
+}
+
+._searchField_b2eb7f7 input,
+._searchField_b2eb7f7 input:hover,
+._searchField_b2eb7f7 input:focus,
+._searchField_b2eb7f7 input::placeholder {
+    color: var(--solo-text) !important;
+    -webkit-text-fill-color: var(--solo-text) !important;
+}
+
+._searchField_b2eb7f7 svg,
+._searchField_b2eb7f7 svg use,
+._searchField_b2eb7f7 button svg,
+._searchField_b2eb7f7 button svg use {
+    color: var(--solo-text-secondary) !important;
+    fill: currentColor !important;
+}
+
+
+/* =========================================================
+   8. SEARCH POPOVER
+
+   Base explicitly makes this nearly white.
+   ========================================================= */
+
+._container_f1be359,
+._container_79ca9c5 {
+    background: var(--solo-surface-raised) !important;
+    background-color: var(--solo-surface-raised) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    outline: none !important;
+
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .45) !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+._container_f1be359 span,
+._container_f1be359 p,
+._container_f1be359 a,
+._container_f1be359 ._marketText_1lyag_1,
+._container_79ca9c5 span,
+._container_79ca9c5 p,
+._container_79ca9c5 a,
+._container_79ca9c5 ._marketText_1lyag_1 {
+    color: var(--solo-text) !important;
+    -webkit-text-fill-color: currentColor !important;
+}
+
+/* Search metadata */
+._container_f1be359 [class*="_artistTextContainer_"],
+._container_f1be359 [class*="_detailContainer_"],
+._container_79ca9c5 [class*="_artistTextContainer_"],
+._container_79ca9c5 [class*="_detailContainer_"] {
+    color: var(--solo-text-secondary) !important;
+}
+
+/* Search match highlight */
+span._highlight_a043e62 {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+
+    background: rgba(255, 255, 255, .10) !important;
+
+    border-radius: 3px !important;
+}
+
+
+/* =========================================================
+   9. BITRATE / SAMPLE RATE BADGE
+
+   Base defines these TWICE, including separate Now Playing
+   rules. Use specificity high enough to kill both.
+   ========================================================= */
+
+._player_8c80ae6 ._gradientMax_9111fba,
+._player_8c80ae6 ._gradientHigh_87f2c3b,
+._player_8c80ae6 ._gradientLow_3f9bc0d,
+._player_8c80ae6 ._badge_7b2911e,
+
+._player_8c80ae6.nowPlayingVisible ._gradientMax_9111fba,
+._player_8c80ae6.nowPlayingVisible ._gradientHigh_87f2c3b,
+._player_8c80ae6.nowPlayingVisible ._gradientLow_3f9bc0d,
+._player_8c80ae6.nowPlayingVisible ._badge_7b2911e {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    filter: none !important;
+    animation: none !important;
+}
+
+._player_8c80ae6 ._badge_7b2911e:hover,
+._player_8c80ae6.nowPlayingVisible ._badge_7b2911e:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+
+    box-shadow: none !important;
+    filter: brightness(1.15) !important;
+    animation: none !important;
+}
+
+
+/* =========================================================
+   10. SETTINGS SELECTS
+
+   Base gives these gradient backgrounds and rounded pills.
+   Make them ordinary flat controls.
+   ========================================================= */
+
+[data-test="settings-page"] ._select_ef84104,
+[data-test="settings-page"] div._container_9a0abb9 > ._select_ef84104 {
+    background: var(--solo-bg) !important;
+    background-color: var(--solo-bg) !important;
+    background-image: none !important;
+
+    color: var(--solo-text) !important;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    border-radius: 6px !important;
+}
+
+[data-test="settings-page"] ._select_ef84104:hover {
+    background: var(--solo-hover) !important;
+    background-color: var(--solo-hover) !important;
+}
+
+
+/* =========================================================
+   11. TIDALUNA THEMES PAGE
+   Long URL must never move action controls.
+
+   Structure:
+       [ URL text........................ ][toggle][reload][x]
+
+   Text is the shrinkable part.
+   Controls are not.
+   ========================================================= */
+
+/* Theme/plugin list rows */
+[class*="MuiPaper"] {
+    min-width: 0;
+}
+
+/*
+   Any long textual URL inside Luna cards may shrink/wrap
+   instead of widening its parent.
+*/
+[class*="MuiPaper"] p,
+[class*="MuiPaper"] span,
+[class*="MuiPaper"] a {
+    min-width: 0;
+}
+
+/* URLs */
+[class*="MuiPaper"] a[href^="http"],
+[class*="MuiPaper"] p {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/*
+   Luna theme rows are flex layouts.
+   Force descendants containing action buttons to stay put.
+*/
+[class*="MuiPaper"] button,
+[class*="MuiPaper"] input[type="checkbox"],
+[class*="MuiPaper"] .MuiSwitch-root {
+    flex-shrink: 0 !important;
+}
+
+
+/*
+   Critical flex fix:
+   a flex child defaults to min-width:auto, meaning a huge
+   URL can refuse to shrink and push controls away.
+
+   min-width:0 allows the URL column to actually contract.
+*/
+[class*="MuiPaper"] > *,
+[class*="MuiStack"] > * {
+    min-width: 0;
+}
+
+
+/* Don't allow action buttons to be crushed */
+[class*="MuiStack"] > button,
+[class*="MuiStack"] > .MuiSwitch-root,
+[class*="MuiStack"] > [role="button"] {
+    flex-shrink: 0 !important;
+}
 
 /* =========================================================
    END
