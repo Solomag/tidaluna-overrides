@@ -151,3 +151,365 @@ div._searchField_b2eb7f7,._searchFieldWithPopover_267e090>._searchField_b2eb7f7,
 .css-1m2j012>:first-child,.css-1v59atl>:first-child,.css-1m2uggs>:first-child,.css-1l78aht>:first-child{min-width:0!important;max-width:100%!important;overflow:hidden!important;overflow-wrap:anywhere!important;word-break:break-word!important}
 .css-1m2j012>:last-child,.css-1v59atl>:last-child,.css-1m2uggs>:last-child,.css-1l78aht>:last-child{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;min-width:max-content!important}
 .css-1m2j012>:last-child>*,.css-1v59atl>:last-child>*,.css-1m2uggs>:last-child>*,.css-1l78aht>:last-child>*{flex:0 0 auto!important;align-self:center!important;margin:0!important;transform:none!important}
+
+
+/* =========================================================
+   SOLO MILKYWAY v2.1 — AUDIT RESTORATION PASS
+   Restores the behavior lost in the over-compressed rebuild.
+   Keep this section LAST: it intentionally wins the cascade.
+   ========================================================= */
+
+:root{
+  /* v2 short build accidentally referenced a non-existent
+     --solo-surface-raised in a few inherited rules. */
+  --solo-surface:#09090b;
+  --solo-surface-raised:#111114;
+  --solo-border:rgba(255,255,255,.08);
+  --solo-hover-soft:rgba(255,255,255,.08);
+  --solo-hover-strong:rgba(255,255,255,.12);
+}
+
+/* 1. CARD GEOMETRY
+   Do NOT reserve 40px on every hashed "_title_" descendant.
+   That selector was one of the regressions in the short build.
+   Base already has the correct card title clamp. */
+._card_38c6c04 [class*="_title_"]{
+  min-height:unset!important;
+  height:auto!important;
+  max-height:unset!important;
+}
+
+/* Only the actual title text gets the two-line geometry. */
+._card_38c6c04 ._titleText_9e9bb51{
+  min-height:40px!important;
+  max-height:40px!important;
+  line-height:20px!important;
+  overflow:hidden!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+}
+
+/* Collection cards: same-height rows without touching every title-like child. */
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad{
+  height:100%!important;
+  min-height:100%!important;
+  box-sizing:border-box!important;
+}
+
+/* 2. SELECTED TRACKS
+   Base uses dark --vv / --trackseltxt for selected rows.
+   Keep hierarchy, but never black text. */
+._tableRow_299a426._tableRowSelected_fb04c2a,
+._rowContainer_ebb4cfc._selected_8f556cc{
+  --vv:rgba(255,255,255,.92)!important;
+  --trackseltxt:rgba(255,255,255,.92)!important;
+  --wave-color-text-main:rgba(255,255,255,.92)!important;
+  --wave-color-text-secondary:rgba(255,255,255,.68)!important;
+}
+._tableRow_299a426._tableRowSelected_fb04c2a ._artistText_a1c7611,
+._tableRow_299a426._tableRowSelected_fb04c2a ._artistText_a1c7611 *,
+._rowContainer_ebb4cfc._selected_8f556cc ._artistText_a1c7611,
+._rowContainer_ebb4cfc._selected_8f556cc ._artistText_a1c7611 *{
+  color:rgba(255,255,255,.68)!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+
+/* 3. EXPLORE
+   The arrow spacer itself was the remaining exposed rectangle. */
+[data-test-page-name="explore"] ._buttonContainer_a07db07,
+[data-test-page-name="explore"] ._buttonContainer_a07db07>*,
+[data-test-page-name="explore"] .css-8iwxr,
+[data-test-page-name="explore"] .css-8iwxr>*,
+[data-test-page-name="explore"] .css-1xlzpjd{
+  background:#09090b!important;
+  background-color:#09090b!important;
+  background-image:none!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+[data-test-page-name="explore"] ._buttonContainer_a07db07 button:hover,
+[data-test-page-name="explore"] .css-1xlzpjd:hover{
+  background:#1e1e22!important;
+}
+[data-test-page-name="explore"] ._buttonContainer_a07db07 svg,
+[data-test-page-name="explore"] ._buttonContainer_a07db07 svg use,
+[data-test-page-name="explore"] .css-1xlzpjd svg,
+[data-test-page-name="explore"] .css-1xlzpjd svg use{
+  color:rgba(255,255,255,.92)!important;
+  fill:currentColor!important;
+}
+
+/* 4. COLLECTION / MIXES OUTER FRAMES
+   Base puts decoration on several different wrappers depending
+   on collection type. Remove decoration only; preserve geometry. */
+[data-test-page-name="mixes"] [class*="_items_"],
+[data-test-page-name="mixes"] [class*="_grid_"],
+[data-test-page-name="mixes"] [class*="_moduleContainer_"],
+[data-track--page-id^="mycollection_"] [class*="_items_"],
+[data-track--page-id^="mycollection_"] [class*="_grid_"],
+[data-track--page-id^="mycollection_"] [class*="_moduleContainer_"],
+[data-track--page-id^="mycollection_"] [class*="_cellList_"],
+[data-track--page-id^="mycollection_"] [class*="_itemsContainer_"],
+[data-test-page-name="my-collection"] [class*="_items_"],
+[data-test-page-name="my-collection"] [class*="_grid_"]{
+  border-color:transparent!important;
+  border-style:none!important;
+  outline:none!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+}
+
+/* ReactVirtualized wrappers can carry the visible frame too. */
+[data-test-page-name="mixes"] .ReactVirtualized__Grid,
+[data-track--page-id^="mycollection_"] .ReactVirtualized__Grid{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+
+/* 5. COLLECTION ARTWORK
+   Never hide the actual artwork. Only dim it. */
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad img,
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad picture,
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad [class*="_image_"],
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad [class*="_Image_"]{
+  opacity:1!important;
+  visibility:visible!important;
+}
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover img{
+  opacity:1!important;
+  visibility:visible!important;
+  filter:brightness(.78)!important;
+}
+[data-track--page-id^="mycollection_"] ._cellContainer_19b23ad:hover [class*="_overlay_"]{
+  background:rgba(0,0,0,.12)!important;
+  background-image:none!important;
+  opacity:1!important;
+  filter:none!important;
+}
+
+/* Folder art remains #09090b like sidebar folders. */
+[data-track--page-id="mycollection_playlists"] ._container_7e465e2,
+[data-track--page-id="mycollection_playlists"] .css-ohr3gy,
+[data-track--page-id="mycollection_playlists"] .css-17bbmu3{
+  background:#09090b!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* 6. MIXES TEXT
+   Base card padding stays intact. Clamp descriptive copy instead
+   of clipping the whole card. */
+[data-test-page-name="mixes"] ._card_38c6c04,
+[data-track--page-id*="mix"] ._card_38c6c04{
+  overflow:hidden!important;
+}
+[data-test-page-name="mixes"] ._card_38c6c04 ._marketText_1lyag_1:not(._titleText_9e9bb51),
+[data-track--page-id*="mix"] ._card_38c6c04 ._marketText_1lyag_1:not(._titleText_9e9bb51){
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* 7. SEARCH
+   Draw exactly ONE pill. Wrappers stay transparent.
+   This also kills the translucent rectangular tail. */
+._container_cb5cbe4,
+._searchFieldWithPopover_267e090,
+._container_5116191._searchFieldWithPopover_267e090{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+._container_cb5cbe4 .searchFieldWithinSearchFieldWithPopover,
+div._searchField_b2eb7f7{
+  background:#1e1e22!important;
+  background-color:#1e1e22!important;
+  background-image:none!important;
+  border:1px solid rgba(255,255,255,.035)!important;
+  border-radius:999px!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+}
+div._searchField_b2eb7f7:focus-within{
+  background:#1e1e22!important;
+  border-color:rgba(255,255,255,.08)!important;
+}
+
+/* Search backdrop must not become a visible giant rectangle. */
+._searchBackdrop_e7b748d{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+
+/* Popover is a panel, not transparent. */
+._container_f1be359,
+[class="_container_79ca9c5"]{
+  background:#111114!important;
+  background-color:#111114!important;
+  background-image:none!important;
+  color:rgba(255,255,255,.92)!important;
+  border:0!important;
+  box-shadow:0 12px 32px rgba(0,0,0,.45)!important;
+  backdrop-filter:none!important;
+}
+
+/* 8. TIDAL SETTINGS */
+[data-test="settings-page"] ._container_b4f1e20._fillDark_a1e5896,
+[data-test="settings-page"] ._container_b4f1e20._noFill_8429ea8,
+[data-test="settings-page"] ._container_b4f1e20._fillDark_a1e5896>div,
+[data-test="settings-page"] ._container_9a0abb9,
+[data-test="settings-page"] ._container_9a0abb9:has(>._select_ef84104),
+[data-test="settings-page"] ._select_ef84104{
+  background:#09090b!important;
+  background-color:#09090b!important;
+  background-image:none!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+[data-test="settings-page"] ._unchecked_a1bcc16._label_12bd8cc{
+  background:#34343b!important;
+}
+[data-test="settings-page"] ._checked_3422d33._label_12bd8cc{
+  background:#858591!important;
+}
+[data-test="settings-page"] ._label_12bd8cc:after{
+  background:#f2f2f4!important;
+}
+
+/* 9. QUALITY BADGE — all known Base variants */
+._gradientMax_9111fba,._gradientHigh_87f2c3b,._gradientLow_3f9bc0d,
+._badge_7b2911e,
+._gradientMax_9111fba:hover,._gradientHigh_87f2c3b:hover,._gradientLow_3f9bc0d:hover,
+._badge_7b2911e:hover{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  animation:none!important;
+}
+
+/* 10. CONTEXT MENU — remove the border reintroduced by old v2. */
+._container_d3060bb._visible_4bed23e,
+._contextMenu_8606b2d,
+._subMenu_706d970,
+._submenu_1951fe4{
+  background:#111114!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.45)!important;
+}
+
+/* 11. PLAY QUEUE */
+._container_b3e8f28,
+._container_b3e8f28._nowPlayingVisible_6285d60{
+  background:#111114!important;
+  background-image:none!important;
+  border:0!important;
+  backdrop-filter:none!important;
+}
+._container_aab70e3:hover,
+._wrapper_940fda7:hover{
+  background:rgba(255,255,255,.08)!important;
+  box-shadow:none!important;
+}
+._container_aab70e3:hover ._marketText_1lyag_1,
+._container_aab70e3:hover ._item_39605ae,
+._wrapper_940fda7:hover ._marketText_1lyag_1,
+._wrapper_940fda7:hover ._item_39605ae{
+  color:rgba(255,255,255,.92)!important;
+  text-decoration:none!important;
+  text-shadow:none!important;
+}
+
+/* 12. LUNA THEME PAGE
+   Important correction: the short rebuild guessed that the first
+   and last children were the text/actions columns. That is not
+   guaranteed by MUI and caused new layout damage.
+   Revert that guess and fix the actual flex failure instead. */
+.css-1m2j012,
+.css-1v59atl,
+.css-1m2uggs,
+.css-1l78aht{
+  display:flex!important;
+  grid-template-columns:unset!important;
+  align-items:center!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+
+/* Every textual flex descendant may shrink. */
+.css-1m2j012 p,.css-1m2j012 a,.css-1m2j012 span,
+.css-1v59atl p,.css-1v59atl a,.css-1v59atl span,
+.css-1m2uggs p,.css-1m2uggs a,.css-1m2uggs span,
+.css-1l78aht p,.css-1l78aht a,.css-1l78aht span{
+  min-width:0!important;
+}
+
+/* The URL itself gets a hard right-side reserve. */
+.css-1m2j012 a[href^="http"],.css-1m2j012 p,
+.css-1v59atl a[href^="http"],.css-1v59atl p,
+.css-1m2uggs a[href^="http"],.css-1m2uggs p,
+.css-1l78aht a[href^="http"],.css-1l78aht p{
+  max-width:calc(100% - 170px)!important;
+  overflow:hidden!important;
+  overflow-wrap:anywhere!important;
+  word-break:break-word!important;
+  box-sizing:border-box!important;
+}
+
+/* Controls never shrink and all use the same vertical center. */
+.css-1m2j012 button,.css-1m2j012 .MuiSwitch-root,
+.css-1v59atl button,.css-1v59atl .MuiSwitch-root,
+.css-1m2uggs button,.css-1m2uggs .MuiSwitch-root,
+.css-1l78aht button,.css-1l78aht .MuiSwitch-root{
+  flex:0 0 auto!important;
+  flex-shrink:0!important;
+  align-self:center!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+  transform:none!important;
+}
+
+/* Brighter Luna switches. */
+.css-1y0ghtc+.MuiSwitch-track{
+  background-color:#414149!important;
+  opacity:1!important;
+}
+.css-1y0ghtc.Mui-checked+.MuiSwitch-track{
+  background-color:#858591!important;
+  opacity:1!important;
+}
+.css-1y0ghtc.Mui-checked .MuiSwitch-thumb{
+  background:#f2f2f4!important;
+}
+
+/* 13. FOOTER: keep inner groups and UpNext visually transparent. */
+._player_8c80ae6 ._trackContent_7b758a9,
+._player_8c80ae6 ._utilityButtons_4d7aaf9,
+.upnext-container,
+.upnext-container:hover{
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* 14. LYRICS GLASS */
+#nowPlaying ._wrapper_512d5f4{
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+}
